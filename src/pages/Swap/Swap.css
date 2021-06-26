@@ -83,11 +83,24 @@
     font-weight: bold;
     font-size: 36px;
     line-height: 44px;
-    /* identical to box height */
-
     letter-spacing: 0.16em;
-
     color: #9A9A9A;
+}
+.change .bottom .count ,  .change .top .count  {
+    display: flex;
+    align-items: center;
+}
+.change .bottom .count .selectedCoin,  .change .top .count .selectedCoin{
+    margin-right: 10px;
+}
+.change .bottom .count .selectedCoin img{
+    width: 30px;
+    height: 30px;
+}
+
+  .change .top .count .selectedCoin img{
+    width: 30px;
+    height: 30px;
 }
 .bottom{
     margin-top: 10px;

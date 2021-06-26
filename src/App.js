@@ -7,7 +7,7 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import Swap from "./pages/Swap/Swap";
+
 import Pools from "./pages/Pools/Pools";
 import Reward from "./pages/Reward/Reward";
 import Voting from "./pages/Voting/Voting";
@@ -15,10 +15,16 @@ import Lend from "./pages/Lend/Lend";
 import Dervatives from "./pages/Dervatives/Dervatives";
 import SelectToken from "./components/SelectToken/SelectToken";
 import Stake from "./components/Stake/Stake";
+import {Swap} from "./pages/Swap/Swap";
 function App() {
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
-  const selectToken = () => {
+  const [checkedCoinTop, setCheckedCoinTop] = useState({name: '', image: 'coin.png'})
+  const [checkedCoinBottom, setCheckedCoinBottom] = useState({name: '', image: 'coin.png'})
+  const [checkSelect, setCheckSelect] = useState();
+  const selectToken = (evt) => {
+      console.log(evt)
+      setCheckSelect(evt)
       setSelectTokenDrop(true);
   }
   const openModalStake = () => {
@@ -29,6 +35,16 @@ function App() {
   }
   const closeModalStake = () => {
       setStakeModal(false);
+  }
+  const selectCoin = (evt) => {
+      setSelectTokenDrop(false);
+      console.log(evt)
+      if (checkSelect === 'top') {
+          setCheckedCoinTop(evt)
+      } else {
+          setCheckedCoinBottom(evt)
+      }
+
   }
   return (
     <div className="App" style={{backgroundImage: 'url("images/5172658 1.png")'}}>
@@ -41,7 +57,7 @@ function App() {
                 <div className="section">
                     <Switch>
                         <Route exact path="/">
-                            <Swap selectToken={selectToken}/>
+                            <Swap selectToken={selectToken} checkedCoin={checkedCoinTop} checkCoinBottom={checkedCoinBottom}/>
                         </Route>
                         <Route exact path="/pools">
                             <Pools/>
@@ -65,7 +81,7 @@ function App() {
 
 
         {selectTokenDrop && <div className="backdrop">
-            <SelectToken closeModal={closeModal}/>
+            <SelectToken closeModal={closeModal} selectCoin={selectCoin}/>
         </div>}
 
         {stakeModal &&
