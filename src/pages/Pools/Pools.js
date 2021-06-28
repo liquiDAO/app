@@ -65,7 +65,7 @@ function Pools() {
         </table>
         <div className="pagination"></div>
         <div className="btn-block">
-          <button className="btn-add">Add Luquidity</button>
+          <button className="btn-add">Add Liquidity</button>
         </div>
       </div>
     </div>
