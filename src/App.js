@@ -25,7 +25,6 @@ function App() {
   });
   const [checkSelect, setCheckSelect] = useState();
   const selectToken = (evt) => {
-    console.log(evt);
     setCheckSelect(evt);
     setSelectTokenDrop(true);
   };
@@ -40,7 +39,6 @@ function App() {
   };
   const selectCoin = (evt) => {
     setSelectTokenDrop(false);
-    console.log(evt);
     if (checkSelect === 'top') {
       setCheckedCoinTop(evt);
     } else {
