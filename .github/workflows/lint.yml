@@ -23,6 +23,6 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      - run: yarn format
+      - run: yarn format:check
       
       - run: yarn build
