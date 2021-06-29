@@ -10,7 +10,7 @@ function Menu({ openModalStake }) {
           <span className="slider round" />
         </label>
         <p onClick={openModalStake}>STAKE</p>
-        <button>LiquiDAO APP</button>
+        <button>Connect wallet</button>
       </div>
     </div>
   );
