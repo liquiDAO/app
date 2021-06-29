@@ -18,7 +18,7 @@ function Lend() {
               />
             </div>
             <div className="chip-voting">
-              from 80 %
+              from 30 %
               <img
                 src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
                 alt=""
