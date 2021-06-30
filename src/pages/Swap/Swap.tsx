@@ -10,8 +10,6 @@ export const Swap: React.FC = ({
   isConnected,
 }: any) => {
 
-  // const [isInstalled, isConnected] = useChecks();
-
   return (
     <div className="Swap">
       <div className="section-swap">

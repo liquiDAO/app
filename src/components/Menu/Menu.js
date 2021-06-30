@@ -3,7 +3,6 @@ import './Menu.css';
 import { link } from '../../utils';
 
 function Menu({ openModalStake, isInstalled, isConnected }) {
-  // const [isInstalled, isConnected] = useChecks();
 
   return (
     <div className="Menu">
