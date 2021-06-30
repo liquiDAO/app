@@ -26,7 +26,6 @@
     "eject": "react-scripts eject",
     "format:check": "npx prettier --check src",
     "format": "npx prettier --write src"
-
   },
   "eslintConfig": {
     "extends": [

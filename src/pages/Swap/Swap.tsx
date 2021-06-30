@@ -1,10 +1,15 @@
 import React from 'react';
 import './Swap.css';
+import { useChecks, link } from '../../utils';
+
 export const Swap: React.FC = ({
   selectToken,
   checkedCoin,
   checkCoinBottom,
 }: any) => {
+
+  const [isInstalled, isConnected] = useChecks();
+
   return (
     <div className="Swap">
       <div className="section-swap">
@@ -52,9 +57,10 @@ export const Swap: React.FC = ({
             </div>
           </div>
 
-          <button className="connect-wallet">Connect wallet</button>
+          <button id="btn2" onClick={() => isInstalled === false && link} className="connect-wallet">{ isConnected ? 'Swap' : 'Connect wallet' }</button>
         </div>
       </div>
     </div>
   );
 };
+
