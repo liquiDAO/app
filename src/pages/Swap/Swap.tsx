@@ -1,14 +1,16 @@
 import React from 'react';
 import './Swap.css';
-import { useChecks, link } from '../../utils';
+import { link } from '../../utils';
 
 export const Swap: React.FC = ({
   selectToken,
   checkedCoin,
   checkCoinBottom,
+  isInstalled,
+  isConnected,
 }: any) => {
 
-  const [isInstalled, isConnected] = useChecks();
+  // const [isInstalled, isConnected] = useChecks();
 
   return (
     <div className="Swap">

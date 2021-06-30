@@ -12,7 +12,9 @@ import Dervatives from './pages/Dervatives/Dervatives';
 import SelectToken from './components/SelectToken/SelectToken';
 import Stake from './components/Stake/Stake';
 import { Swap } from './pages/Swap/Swap';
+import { useChecks } from './utils';
 function App() {
+  const [isInstalled, isConnected] = useChecks();
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
   const [checkedCoinTop, setCheckedCoinTop] = useState({
@@ -51,7 +53,11 @@ function App() {
       style={{ backgroundImage: 'url("images/5172658 1.png")' }}
     >
       <Router>
-        <Menu openModalStake={openModalStake} />
+        <Menu
+          isInstalled={isInstalled}
+          isConnected={isConnected}
+          openModalStake={openModalStake}
+        />
         <div className="layout">
           <div className="sideBar">
             <Sidebar />
@@ -63,6 +69,8 @@ function App() {
                   selectToken={selectToken}
                   checkedCoin={checkedCoinTop}
                   checkCoinBottom={checkedCoinBottom}
+                  isInstalled={isInstalled}
+                  isConnected={isConnected}
                 />
               </Route>
               <Route exact path="/pools">

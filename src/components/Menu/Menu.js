@@ -1,9 +1,9 @@
 import React from 'react';
 import './Menu.css';
-import { useChecks, link } from '../../utils';
+import { link } from '../../utils';
 
-function Menu({ openModalStake }) {
-  const [isInstalled, isConnected] = useChecks();
+function Menu({ openModalStake, isInstalled, isConnected }) {
+  // const [isInstalled, isConnected] = useChecks();
 
   return (
     <div className="Menu">

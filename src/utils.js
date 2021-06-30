@@ -1,36 +1,43 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 // custom react hook to enable and connect users Marina account.
 function useChecks() {
   const [isInstalled, setIsInstalled] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
 
-  const isMarinaInstalled = async () => {
-    if (window.marina) {
-      setIsInstalled(!isInstalled);
-    } else {
-      setIsInstalled(isInstalled);
-    }
-  };
+  useEffect(() => {
+    let isCheckingMarina = false;
+    const interval = setInterval(async () => {
+      try {
+        const marina = window.marina;
 
-  const checkEnabled = useCallback(async () => {
-    let res = await window.marina.isEnabled();
-    if (res) {
-      setIsConnected(!isConnected);
-    } else {
-        document
+        if (marina === undefined) return;
+
+        setIsInstalled(true);
+
+        if (isCheckingMarina) return;
+        isCheckingMarina = true;
+
+        let isEnabled = await window.marina.isEnabled();
+
+        if (isEnabled) {
+          setIsConnected(isEnabled);
+        } else {
+          document
         .getElementById('btn1')
         .addEventListener('click', async () => await window.marina.enable());
-      document
-        .getElementById('btn2')
-        .addEventListener('click', async () => await window.marina.enable());
-      setIsConnected(!isConnected);
-    }
-  }, []);
+        }
+      } catch (error) {
+         console.log(error);
+      } finally {
+        isCheckingMarina = false;
+      }
+    }, 1000);
 
-  useEffect(() => {
-    isMarinaInstalled();
-    checkEnabled();
+    // Clean up
+    return () => {
+      clearInterval(interval);
+    }
   }, []);
 
   return [isInstalled, isConnected];
