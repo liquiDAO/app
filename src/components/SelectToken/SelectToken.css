@@ -1,137 +1,139 @@
-.SelectToken {
-  width: 100%;
+.SelectToken{
+    width: 100%;
 }
-.selectBlock {
-  max-width: 411px;
-  width: 100%;
-  height: 800px;
-  background: #000836;
-  border-radius: 20px;
-  margin: 50px auto;
-  box-sizing: border-box;
-  padding: 52px 41px;
+.selectBlock{
+    max-width: 411px;
+    width: 100%;
+    height: 800px;
+    background: #000836;
+    border-radius: 20px;
+    margin: 50px auto;
+    box-sizing: border-box;
+    padding: 52px 41px;
 }
-.header-select {
-  width: 100%;
-  color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.header-select{
+    width: 100%;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .header-select img {
-  width: 24px;
-  height: 24px;
-  outline: none;
-  cursor: pointer;
+    width: 24px;
+    height: 24px;
+    outline: none;
+    cursor: pointer;
 }
-.searchBox {
-  width: 100%;
-  position: relative;
+.searchBox{
+    width: 100%;
+    position: relative;
 }
 .searchBox input {
-  width: 100%;
-  border: 1px solid #c32977;
-  box-sizing: border-box;
-  border-radius: 38px;
-  padding: 14px 40px;
-  outline: none;
+    width: 100%;
+    border: 1px solid #C32977;
+    box-sizing: border-box;
+    border-radius: 38px;
+    padding: 14px 40px;
+    outline: none;
 }
 .searchBox img {
-  position: absolute;
-  top: 10px;
-  left: 8px;
+    position: absolute;
+    top: 10px;
+    left: 8px;
 }
-.common {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.07em;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  margin-top: 22px;
+.common{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.07em;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    margin-top: 22px;
 }
 .common img {
-  width: 18px;
-  height: 18px;
-  margin-left: 15px;
+    width: 18px;
+    height: 18px;
+    margin-left: 15px;
 }
-.chips {
-  width: 100%;
-  margin-top: 14px;
-  display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #ffffff;
+.chips{
+    width: 100%;
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #FFFFFF;
 }
 .chips .chip {
-  max-width: 90px;
-  width: 100%;
-  background: #000836;
-  border: 1px solid #c32977;
-  box-sizing: border-box;
-  border-radius: 12px;
-  display: flex;
-  padding: 6px;
-  margin: 6px 8px;
+    max-width: 90px;
+    width: 100%;
+    background: #000836;
+    border: 1px solid #C32977;
+    box-sizing: border-box;
+    border-radius: 12px;
+    display: flex;
+    padding: 6px;
+    margin: 6px 8px;
 }
 .chips .chip img {
-  width: 26px;
-  height: 26px;
+    width: 26px;
+    height: 26px;
 }
 .chips .chip span {
-  color: #ffffff;
-  margin-left: 8px;
+    color: #FFFFFF;
+    margin-left: 8px;
 }
 .chip-wallet {
-  width: 100%;
-  height: 400px;
-  padding: 15px 0 0 0;
-  margin: 0;
-  list-style: none;
-  overflow-y: auto;
-  margin-top: 8px;
+    width: 100%;
+    height: 400px;
+    padding: 15px 0 0 0;
+    margin: 0;
+    list-style: none;
+    overflow-y: auto;
+    margin-top: 8px;
 }
 .chip-wallet li {
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 29px;
-  letter-spacing: 0.07em;
-  transition: 0.4s;
-  cursor: pointer;
-  outline: none;
-  box-sizing: border-box;
-  padding: 2px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.07em;
+    transition: .4s;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    padding: 2px;
 }
 .chip-wallet li:hover {
-  background: #42465e;
+    background: #42465E;
 }
 .chip-wallet li img {
-  margin-right: 12px;
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
 }
 ::-webkit-scrollbar {
-  width: 4px;
+    width: 4px;
 }
 
-/* Track */
+
 ::-webkit-scrollbar-track {
-  background: #92949e;
+    background: #92949E;
 }
 
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
-  background: #210039;
+    background: #210039;
 }
 
-/* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
 }
