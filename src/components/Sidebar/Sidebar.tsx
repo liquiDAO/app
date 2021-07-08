@@ -1,8 +1,9 @@
 import React from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
-function Sidebar() {
-  return (
+
+const Sidebar: React.FC = () => {
+    return (
     <div className="Sidebar">
       <ul>
         <Link className="link" to="/">
