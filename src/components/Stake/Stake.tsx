@@ -1,8 +1,8 @@
 import React from 'react';
 import './Stake.css';
 
-function Stake({ closeModalStake }) {
-  return (
+const Stake: React.FC = ({ closeModalStake }: any) => {
+    return (
     <div className="Stake">
       <div className="modal-stake">
         <h3>STAKE</h3>
