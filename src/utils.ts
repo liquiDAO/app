@@ -1,6 +1,12 @@
 /*jslint es6 */
 import { useState, useEffect } from 'react';
 
+declare global {
+  interface Window {
+      marina: any;
+  }
+}
+
 // custom react hook to enable and connect users Marina account.
 function useChecks() {
   const [isInstalled, setIsInstalled] = useState(false);
@@ -11,7 +17,7 @@ function useChecks() {
     const interval = setInterval(async () => {
       try {
         const marina = window.marina;
-
+        
         if (marina === undefined) return;
 
         setIsInstalled(true);
@@ -24,8 +30,7 @@ function useChecks() {
         if (isEnabled) {
           setIsConnected(isEnabled);
         } else {
-          document
-            .getElementById('btn1')
+          document.getElementById('btn1')!
             .addEventListener(
               'click',
               async () => await window.marina.enable(),
