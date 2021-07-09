@@ -1,6 +1,7 @@
 import React from 'react';
 import './Pools.css';
-function Pools() {
+
+const Pools: React.FC = () => {
   return (
     <div className="Pools">
       <div className="section-pools">
