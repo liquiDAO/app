@@ -3,7 +3,7 @@ import './Sidebar.css';
 import { Link } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
-    return (
+  return (
     <div className="Sidebar">
       <ul>
         <Link className="link" to="/">
@@ -27,5 +27,5 @@ const Sidebar: React.FC = () => {
       </ul>
     </div>
   );
-}
+};
 export default Sidebar;

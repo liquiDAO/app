@@ -9,7 +9,6 @@ export const Swap: React.FC = ({
   isInstalled,
   isConnected,
 }: any) => {
-
   return (
     <div className="Swap">
       <div className="section-swap">
@@ -57,10 +56,15 @@ export const Swap: React.FC = ({
             </div>
           </div>
 
-          <button id="btn2" onClick={() => isInstalled === false && link} className="connect-wallet">{ isConnected ? 'Swap' : 'Connect wallet' }</button>
+          <button
+            id="btn2"
+            onClick={() => isInstalled === false && link}
+            className="connect-wallet"
+          >
+            {isConnected ? 'Swap' : 'Connect wallet'}
+          </button>
         </div>
       </div>
     </div>
   );
 };
-

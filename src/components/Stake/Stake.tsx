@@ -2,7 +2,7 @@ import React from 'react';
 import './Stake.css';
 
 const Stake: React.FC = ({ closeModalStake }: any) => {
-    return (
+  return (
     <div className="Stake">
       <div className="modal-stake">
         <h3>STAKE</h3>
@@ -16,5 +16,5 @@ const Stake: React.FC = ({ closeModalStake }: any) => {
       </div>
     </div>
   );
-}
+};
 export default Stake;

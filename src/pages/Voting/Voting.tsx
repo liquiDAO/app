@@ -75,5 +75,5 @@ const Voting: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 export default Voting;

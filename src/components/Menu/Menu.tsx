@@ -3,7 +3,7 @@ import './Menu.css';
 import { link } from '../../utils';
 
 const Menu: React.FC = ({ openModalStake, isInstalled, isConnected }: any) => {
-    return (
+  return (
     <div className="Menu">
       <div className="actions">
         <label className="switch">
@@ -11,9 +11,15 @@ const Menu: React.FC = ({ openModalStake, isInstalled, isConnected }: any) => {
           <span className="slider round" />
         </label>
         <p onClick={openModalStake}>STAKE</p>
-        <button id="btn1" style={{display: isConnected ? 'none': 'block'}} onClick={() => isInstalled === false && link}>{ isInstalled ? 'Connect wallet' : 'Install Marina wallet' }</button>
+        <button
+          id="btn1"
+          style={{ display: isConnected ? 'none' : 'block' }}
+          onClick={() => isInstalled === false && link}
+        >
+          {isInstalled ? 'Connect wallet' : 'Install Marina wallet'}
+        </button>
       </div>
     </div>
   );
-}
+};
 export default Menu;

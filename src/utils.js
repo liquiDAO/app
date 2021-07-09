@@ -24,11 +24,14 @@ function useChecks() {
           setIsConnected(isEnabled);
         } else {
           document
-        .getElementById('btn1')
-        .addEventListener('click', async () => await window.marina.enable());
+            .getElementById('btn1')
+            .addEventListener(
+              'click',
+              async () => await window.marina.enable(),
+            );
         }
       } catch (error) {
-         console.log(error);
+        console.log(error);
       } finally {
         isCheckingMarina = false;
       }
@@ -37,7 +40,7 @@ function useChecks() {
     // Clean up
     return () => {
       clearInterval(interval);
-    }
+    };
   }, []);
 
   return [isInstalled, isConnected];
@@ -45,7 +48,7 @@ function useChecks() {
 
 // open the install link on a new tab
 function link() {
-    window.open('https://vulpem.com/marina')
+  window.open('https://vulpem.com/marina');
 }
 
 export { useChecks, link };
