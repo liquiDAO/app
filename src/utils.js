@@ -1,3 +1,4 @@
+/*jslint es6 */
 import { useState, useEffect } from 'react';
 
 // custom react hook to enable and connect users Marina account.
