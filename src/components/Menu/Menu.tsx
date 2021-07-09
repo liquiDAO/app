@@ -2,7 +2,7 @@ import React from 'react';
 import './Menu.css';
 import { link } from '../../utils';
 
-export const Menu: React.FC = ({ openModalStake, isInstalled, isConnected }: any) => {
+const Menu: React.FC = ({ openModalStake, isInstalled, isConnected }: any) => {
     return (
     <div className="Menu">
       <div className="actions">
@@ -16,3 +16,4 @@ export const Menu: React.FC = ({ openModalStake, isInstalled, isConnected }: any
     </div>
   );
 }
+export default Menu;
