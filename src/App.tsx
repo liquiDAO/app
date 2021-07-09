@@ -26,7 +26,7 @@ function App() {
     image: 'coin.png',
   });
   const [checkSelect, setCheckSelect] = useState();
-  const selectToken = (evt) => {
+  const selectToken = (evt: any) => {
     setCheckSelect(evt);
     setSelectTokenDrop(true);
   };
@@ -39,7 +39,7 @@ function App() {
   const closeModalStake = () => {
     setStakeModal(false);
   };
-  const selectCoin = (evt) => {
+  const selectCoin = (evt: any) => {
     setSelectTokenDrop(false);
     if (checkSelect === 'top') {
       setCheckedCoinTop(evt);

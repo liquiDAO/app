@@ -2,13 +2,21 @@ import React from 'react';
 import './Swap.css';
 import { link } from '../../utils';
 
-export const Swap: React.FC = ({
+interface SwapProp {
+  selectToken: any,
+  checkedCoin: any,
+  checkCoinBottom: any,
+  isInstalled: boolean,
+  isConnected: boolean,
+}
+
+export const Swap: React.FC<SwapProp> = ({
   selectToken,
   checkedCoin,
   checkCoinBottom,
   isInstalled,
   isConnected,
-}: any) => {
+}) => {
   return (
     <div className="Swap">
       <div className="section-swap">

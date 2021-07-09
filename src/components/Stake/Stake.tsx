@@ -1,7 +1,10 @@
 import React from 'react';
 import './Stake.css';
 
-const Stake: React.FC = ({ closeModalStake }: any) => {
+interface StakeProp {
+  closeModalStake: any
+}
+const Stake: React.FC<StakeProp> = ({ closeModalStake }) => {
   return (
     <div className="Stake">
       <div className="modal-stake">

@@ -2,7 +2,13 @@ import React from 'react';
 import './Menu.css';
 import { link } from '../../utils';
 
-const Menu: React.FC = ({ openModalStake, isInstalled, isConnected }: any) => {
+interface MenuProps {
+  openModalStake: any,
+  isInstalled: boolean,
+  isConnected: boolean,
+}
+
+const Menu: React.FC<MenuProps> = ({ openModalStake, isInstalled, isConnected }) => {
   return (
     <div className="Menu">
       <div className="actions">
