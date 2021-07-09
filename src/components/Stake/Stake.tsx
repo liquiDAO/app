@@ -2,7 +2,7 @@ import React from 'react';
 import './Stake.css';
 
 interface StakeProp {
-  closeModalStake: any
+  closeModalStake: any;
 }
 const Stake: React.FC<StakeProp> = ({ closeModalStake }) => {
   return (

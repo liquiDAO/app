@@ -3,11 +3,11 @@ import './Swap.css';
 import { link } from '../../utils';
 
 interface SwapProp {
-  selectToken: any,
-  checkedCoin: any,
-  checkCoinBottom: any,
-  isInstalled: boolean,
-  isConnected: boolean,
+  selectToken: any;
+  checkedCoin: any;
+  checkCoinBottom: any;
+  isInstalled: boolean;
+  isConnected: boolean;
 }
 
 export const Swap: React.FC<SwapProp> = ({
