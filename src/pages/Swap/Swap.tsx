@@ -24,7 +24,6 @@ export const Swap: React.FC<SwapProp> = ({
           <h2>SWAP</h2>
           <img src="/images/iconfinder_icons_settings_1564529 1.png" alt="" />
         </div>
-
         <div className="change">
           <div className="top" onClick={() => selectToken('top')}>
             <div className="select">
@@ -47,7 +46,6 @@ export const Swap: React.FC<SwapProp> = ({
               <img src="/images/Vector.png" alt="" />
             </div>
           </div>
-
           <div className="bottom">
             <div className="select" onClick={() => selectToken('bottom')}>
               <span>Select a token</span>
@@ -63,7 +61,6 @@ export const Swap: React.FC<SwapProp> = ({
               0.0
             </div>
           </div>
-
           <button
             id="btn2"
             onClick={() => isInstalled === false && link}

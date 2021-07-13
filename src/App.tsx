@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
 import './App.css';
 import Menu from './components/Menu/Menu';
-import Sidebar from './components/Sidebar/Sidebar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Sidebar from "./components/Sidebar/Sidebar";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
 
 import Pools from './pages/Pools/Pools';
 import Reward from './pages/Reward/Reward';
@@ -17,25 +21,19 @@ function App() {
   const [isInstalled, isConnected] = useChecks();
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
-  const [checkedCoinTop, setCheckedCoinTop] = useState({
-    name: '',
-    image: 'coin.png',
-  });
-  const [checkedCoinBottom, setCheckedCoinBottom] = useState({
-    name: '',
-    image: 'coin.png',
-  });
+  const [checkedCoinTop, setCheckedCoinTop] = useState({title: 'L-BTC', image: 'liquid-btc.svg'})
+  const [checkedCoinBottom, setCheckedCoinBottom] = useState({title: 'L-BTC', image: 'liquid-btc.svg'})
   const [checkSelect, setCheckSelect] = useState();
   const selectToken = (evt: any) => {
     setCheckSelect(evt);
     setSelectTokenDrop(true);
   };
   const openModalStake = () => {
-    setStakeModal(true);
-  };
+      setStakeModal(true)
+  }
   const closeModal = () => {
-    setSelectTokenDrop(false);
-  };
+      setSelectTokenDrop(false);
+  }
   const closeModalStake = () => {
     setStakeModal(false);
   };
@@ -92,18 +90,14 @@ function App() {
           </div>
         </div>
       </Router>
+        {selectTokenDrop && <div className="backdrop">
+            <SelectToken closeModal={closeModal} selectCoin={selectCoin}/>
+        </div>}
 
-      {selectTokenDrop && (
+        {stakeModal &&
         <div className="backdrop">
-          <SelectToken closeModal={closeModal} selectCoin={selectCoin} />
-        </div>
-      )}
-
-      {stakeModal && (
-        <div className="backdrop">
-          <Stake closeModalStake={closeModalStake} />
-        </div>
-      )}
+            <Stake closeModalStake={closeModalStake}/>
+        </div>}
     </div>
   );
 }

@@ -1,24 +1,16 @@
 {
   "coin": [
     {
-      "title": "ETH",
-      "image": "image 3.png"
-    },
-    {
-      "title": "DAI",
-      "image": "image 4 (1).png"
-    },
-    {
-      "title": "USDC",
-      "image": "image 4.png"
+      "title": "L-BTC",
+      "image": "liquid-btc.svg"
     },
     {
       "title": "USDT",
-      "image": "image 41.png"
+      "image": "liquid-tether.svg"
     },
     {
-      "title": "WBTC",
-      "image": "image 3 (1).png"
+      "title": "LCAD",
+      "image": "liquid-cad.png"
     }
   ]
 }
