@@ -1,6 +1,6 @@
 import React from 'react';
 import './Voting.css';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 const BorderLinearProgress = withStyles((theme) => ({
     root: {
