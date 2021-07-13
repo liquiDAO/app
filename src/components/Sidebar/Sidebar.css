@@ -1,37 +1,37 @@
 .Sidebar {
-    box-sizing: border-box;
-    padding-top: 67px;
-    display: flex;
-    justify-content: center;
+  box-sizing: border-box;
+  padding-top: 67px;
+  display: flex;
+  justify-content: center;
 }
 .Sidebar ul {
-    list-style-type: none;
-    padding: 0;
-    max-width: 302px;
-    width: 100%;
+  list-style-type: none;
+  padding: 0;
+  max-width: 302px;
+  width: 100%;
 }
 .Sidebar ul li {
-    max-width: 302px;
-    width: 100%;
-    background: #42465E;
-    border: 1px solid #FFFFFF;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(57, 56, 56, 0.25);
-    backdrop-filter: blur(4px);
-    border-radius: 15px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 29px;
-    letter-spacing: 0.16em;
-    text-align: center;
-    padding: 10px 0;
-    color: #FFFFFF;
-    cursor: pointer;
-    margin-bottom: 40px;
+  max-width: 302px;
+  width: 100%;
+  background: #42465e;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(57, 56, 56, 0.25);
+  backdrop-filter: blur(4px);
+  border-radius: 15px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.16em;
+  text-align: center;
+  padding: 10px 0;
+  color: #ffffff;
+  cursor: pointer;
+  margin-bottom: 40px;
 }
-.link{
-    color: #FFFFFF;
-    text-decoration: none;
+.link {
+  color: #ffffff;
+  text-decoration: none;
 }
