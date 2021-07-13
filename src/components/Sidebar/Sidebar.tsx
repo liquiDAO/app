@@ -1,7 +1,8 @@
 import React from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
-function Sidebar() {
+
+const Sidebar: React.FC = () => {
   return (
     <div className="Sidebar">
       <ul>
@@ -26,5 +27,5 @@ function Sidebar() {
       </ul>
     </div>
   );
-}
+};
 export default Sidebar;

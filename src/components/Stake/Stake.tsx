@@ -1,7 +1,10 @@
 import React from 'react';
 import './Stake.css';
 
-function Stake({ closeModalStake }) {
+interface StakeProp {
+  closeModalStake: any;
+}
+const Stake: React.FC<StakeProp> = ({ closeModalStake }) => {
   return (
     <div className="Stake">
       <div className="modal-stake">
@@ -16,5 +19,5 @@ function Stake({ closeModalStake }) {
       </div>
     </div>
   );
-}
+};
 export default Stake;

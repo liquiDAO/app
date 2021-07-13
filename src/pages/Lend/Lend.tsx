@@ -1,6 +1,7 @@
 import React from 'react';
 import './Lend.css';
-function Lend() {
+
+const Lend: React.FC = () => {
   return (
     <div className="Lend">
       <div className="wrapper">
@@ -18,7 +19,7 @@ function Lend() {
               />
             </div>
             <div className="chip-voting">
-              from 80 %
+              from 30 %
               <img
                 src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
                 alt=""
@@ -169,5 +170,5 @@ function Lend() {
       </div>
     </div>
   );
-}
+};
 export default Lend;

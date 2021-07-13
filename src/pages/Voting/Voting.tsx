@@ -1,3 +1,4 @@
+import React from 'react';
 import './Voting.css';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -17,7 +18,7 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
 }))(LinearProgress);
 
-function Voting() {
+const Voting: React.FC = () => {
   return (
     <div className="Voting">
       <div className="header-voting">
@@ -74,5 +75,5 @@ function Voting() {
       </div>
     </div>
   );
-}
+};
 export default Voting;

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Reward.css';
-function Reward() {
+
+const Reward: React.FC = () => {
   return (
     <div className="Reward">
       <div className="header-reward">
@@ -81,5 +82,5 @@ function Reward() {
       </div>
     </div>
   );
-}
+};
 export default Reward;

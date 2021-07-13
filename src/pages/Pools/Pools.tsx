@@ -1,13 +1,13 @@
 import React from 'react';
 import './Pools.css';
-function Pools() {
+
+const Pools: React.FC = () => {
   return (
     <div className="Pools">
       <div className="section-pools">
         <div className="header-pools">
           <h2>All pools</h2>
         </div>
-
         <table>
           <thead>
             <tr>
@@ -65,10 +65,10 @@ function Pools() {
         </table>
         <div className="pagination"></div>
         <div className="btn-block">
-          <button className="btn-add">Add Luquidity</button>
+          <button className="btn-add">Add Liquidity</button>
         </div>
       </div>
     </div>
   );
-}
+};
 export default Pools;

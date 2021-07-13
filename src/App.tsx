@@ -12,7 +12,9 @@ import Dervatives from './pages/Dervatives/Dervatives';
 import SelectToken from './components/SelectToken/SelectToken';
 import Stake from './components/Stake/Stake';
 import { Swap } from './pages/Swap/Swap';
+import { useChecks } from './utils';
 function App() {
+  const [isInstalled, isConnected] = useChecks();
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
   const [checkedCoinTop, setCheckedCoinTop] = useState({
@@ -24,8 +26,7 @@ function App() {
     image: 'liquid-btc.svg',
   });
   const [checkSelect, setCheckSelect] = useState();
-  const selectToken = (evt) => {
-    console.log(evt);
+  const selectToken = (evt: any) => {
     setCheckSelect(evt);
     setSelectTokenDrop(true);
   };
@@ -38,29 +39,25 @@ function App() {
   const closeModalStake = () => {
     setStakeModal(false);
   };
-  const selectCoin = (evt) => {
+  const selectCoin = (evt: any) => {
     setSelectTokenDrop(false);
-    console.log(evt);
     if (checkSelect === 'top') {
       setCheckedCoinTop(evt);
     } else {
       setCheckedCoinBottom(evt);
     }
   };
-
-  const changeToken = (evt) => {
-    evt.stopPropagation();
-    setCheckedCoinTop(checkedCoinBottom);
-    setCheckedCoinBottom(checkedCoinTop);
-  };
-
   return (
     <div
       className="App"
       style={{ backgroundImage: 'url("images/5172658 1.png")' }}
     >
       <Router>
-        <Menu openModalStake={openModalStake} />
+        <Menu
+          isInstalled={isInstalled}
+          isConnected={isConnected}
+          openModalStake={openModalStake}
+        />
         <div className="layout">
           <div className="sideBar">
             <Sidebar />
@@ -72,7 +69,8 @@ function App() {
                   selectToken={selectToken}
                   checkedCoin={checkedCoinTop}
                   checkCoinBottom={checkedCoinBottom}
-                  changeToken={changeToken}
+                  isInstalled={isInstalled}
+                  isConnected={isConnected}
                 />
               </Route>
               <Route exact path="/pools">
@@ -94,7 +92,6 @@ function App() {
           </div>
         </div>
       </Router>
-
       {selectTokenDrop && (
         <div className="backdrop">
           <SelectToken closeModal={closeModal} selectCoin={selectCoin} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Dervatives.css';
-function Dervatives() {
+
+const Dervatives: React.FC = () => {
   return <div className="Dervatives">Dervatives</div>;
-}
+};
 export default Dervatives;
