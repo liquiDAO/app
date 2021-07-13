@@ -3,17 +3,19 @@ import './Voting.css';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 const BorderLinearProgress = withStyles((theme) => ({
-    root: {
-        height: 10,
-        borderRadius: 5,
-    },
-    colorPrimary: {
-        backgroundColor: 'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)'
-    },
-    bar: {
-        borderRadius: 5,
-        backgroundColor: 'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
-    },
+  root: {
+    height: 10,
+    borderRadius: 5,
+  },
+  colorPrimary: {
+    backgroundColor:
+      'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
+  },
+  bar: {
+    borderRadius: 5,
+    backgroundColor:
+      'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
+  },
 }))(LinearProgress);
 
 const Voting: React.FC = () => {
@@ -73,5 +75,5 @@ const Voting: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 export default Voting;

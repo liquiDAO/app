@@ -82,5 +82,5 @@ const Reward: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 export default Reward;
