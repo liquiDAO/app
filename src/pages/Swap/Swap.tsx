@@ -17,14 +17,13 @@ export const Swap: React.FC<SwapProp> = ({
   isInstalled,
   isConnected,
 }) => {
-
   const handleConnect = async () => {
     if (!isInstalled) {
       return alert('Marina is not installed');
     }
 
     await (window as any).marina.enable();
-  }
+  };
 
   const handleSwap = async () => {
     if (!isInstalled) {
@@ -34,7 +33,7 @@ export const Swap: React.FC<SwapProp> = ({
     if (!isConnected) {
       return alert('User must enable this website to proceed');
     }
-  }
+  };
 
   return (
     <div className="Swap">
@@ -82,24 +81,23 @@ export const Swap: React.FC<SwapProp> = ({
               0.0
             </div>
           </div>
-          {isInstalled && isConnected ? (<button
-            onClick={handleSwap}
-            className="connect-wallet"
-          >
-            Swap
-          </button>)
-            : (
-              <> { isInstalled ? (<button
-                onClick={handleConnect}
-                className="connect-wallet"
-              >
-                Connect wallet
-              </button>) : (<button
-                onClick={handleInstall}
-                className="connect-wallet"
-              >
-                Install Marina wallet
-              </button>)}</>
+          {isInstalled && isConnected ? (
+            <button onClick={handleSwap} className="connect-wallet">
+              Swap
+            </button>
+          ) : (
+            <>
+              {' '}
+              {isInstalled ? (
+                <button onClick={handleConnect} className="connect-wallet">
+                  Connect wallet
+                </button>
+              ) : (
+                <button onClick={handleInstall} className="connect-wallet">
+                  Install Marina wallet
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>

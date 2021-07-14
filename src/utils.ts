@@ -27,8 +27,6 @@ function useChecks() {
 
         let isEnabled = await window.marina.isEnabled();
         setIsConnected(isEnabled);
-        
-
       } catch (error) {
         console.log(error);
       } finally {
