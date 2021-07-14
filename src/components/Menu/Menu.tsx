@@ -1,6 +1,6 @@
 import React from 'react';
 import './Menu.css';
-import { link } from '../../utils';
+import { handleInstall } from '../../utils';
 
 interface MenuProps {
   openModalStake: any;
@@ -24,7 +24,7 @@ const Menu: React.FC<MenuProps> = ({
         <button
           id="btn1"
           style={{ display: isConnected ? 'none' : 'block' }}
-          onClick={() => isInstalled === false && link}
+          onClick={() => isInstalled === false && handleInstall}
         >
           {isInstalled ? 'Connect wallet' : 'Install Marina wallet'}
         </button>

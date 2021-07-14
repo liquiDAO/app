@@ -1,7 +1,6 @@
 import React from 'react';
 import './Swap.css';
-import { link } from '../../utils';
-
+import { handleInstall } from '../../utils';
 
 interface SwapProp {
   selectToken: any;
@@ -17,8 +16,26 @@ export const Swap: React.FC<SwapProp> = ({
   checkCoinBottom,
   isInstalled,
   isConnected,
-
 }) => {
+
+  const handleConnect = async () => {
+    if (!isInstalled) {
+      return alert('Marina is not installed');
+    }
+
+    await (window as any).marina.enable();
+  }
+
+  const handleSwap = async () => {
+    if (!isInstalled) {
+      return alert('Marina is not installed');
+    }
+
+    if (!isConnected) {
+      return alert('User must enable this website to proceed');
+    }
+  }
+
   return (
     <div className="Swap">
       <div className="section-swap">
@@ -26,6 +43,7 @@ export const Swap: React.FC<SwapProp> = ({
           <h2>SWAP</h2>
           <img src="/images/iconfinder_icons_settings_1564529 1.png" alt="" />
         </div>
+
         <div className="change">
           <div className="top" onClick={() => selectToken('top')}>
             <div className="select">
@@ -48,6 +66,7 @@ export const Swap: React.FC<SwapProp> = ({
               <img src="/images/Vector.png" alt="" />
             </div>
           </div>
+
           <div className="bottom">
             <div className="select" onClick={() => selectToken('bottom')}>
               <span>Select a token</span>
@@ -63,16 +82,27 @@ export const Swap: React.FC<SwapProp> = ({
               0.0
             </div>
           </div>
-          <button
-            id="btn2"
-            onClick={() => isInstalled === false && link}
+          {isInstalled && isConnected ? (<button
+            onClick={handleSwap}
             className="connect-wallet"
           >
-            {isConnected ? 'Swap' : 'Connect wallet'}
-          </button>
+            Swap
+          </button>)
+            : (
+              <> { isInstalled ? (<button
+                onClick={handleConnect}
+                className="connect-wallet"
+              >
+                Connect wallet
+              </button>) : (<button
+                onClick={handleInstall}
+                className="connect-wallet"
+              >
+                Install Marina wallet
+              </button>)}</>
+          )}
         </div>
       </div>
     </div>
   );
 };
-
