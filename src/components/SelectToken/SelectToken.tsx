@@ -9,6 +9,7 @@ interface CoinOptionType {
 
 function SelectToken({ closeModal, selectCoin }: any) {
   const [data, setData] = useState<CoinOptionType[]>(json.coin);
+  const [commonData] = useState<CoinOptionType[]>(json.coin);
 
   const filterHandler = (event: any) => {
     if (event.length === 0) {
@@ -51,26 +52,14 @@ function SelectToken({ closeModal, selectCoin }: any) {
         </div>
 
         <div className="chips">
-          <div className="chip">
-            <img src="/images/image 3.png" alt="" />
-            <span>ETH</span>
-          </div>
-          <div className="chip">
-            <img src="/images/image 4 (1).png" alt="" />
-            <span>DAI</span>
-          </div>
-          <div className="chip">
-            <img src="/images/image 4.png" alt="" />
-            <span>USDC</span>
-          </div>
-          <div className="chip">
-            <img src="/images/image 41.png" alt="" />
-            <span>USDT</span>
-          </div>
-          <div className="chip">
-            <img src="/images/image 3 (1).png" alt="" />
-            <span>WBTC</span>
-          </div>
+          {commonData.map((chip: CoinOptionType, idx: number) => {
+            return (
+              <div key={idx} className="chip">
+                <img src={`/images/${chip.image}`} alt="" />
+                <span>{chip.title}</span>
+              </div>
+            );
+          })}
         </div>
 
         <ul className="chip-wallet">

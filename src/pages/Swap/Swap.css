@@ -56,11 +56,29 @@
   width: 15px;
   height: 15px;
 }
+.change .top .convert .top-arow {
+  width: 25px;
+  height: 40px;
+}
+
+.change .top .select {
+  display: flex;
+}
+.change .top .select span {
+  color: #ffffff;
+  margin: 0 15px;
+}
+.change .bottom .select span {
+  color: #ffffff;
+  margin: 0 15px;
+}
 .change .top .select,
 .change .bottom .select {
-  background-color: #040404;
+  max-width: 160px;
+  width: 100%;
+
+  background-color: #6d6d6d;
   border-radius: 17px;
-  width: fit-content;
   box-sizing: border-box;
   padding: 6px 12px;
   display: flex;
@@ -69,7 +87,15 @@
   cursor: pointer;
   outline: none;
 }
-.change .top .select span {
+.change .top .select .selectedCoin img {
+  width: 30px;
+  height: 30px;
+}
+.change .bottom .select .selectedCoin img {
+  width: 30px;
+  height: 30px;
+}
+.change .top .count span {
   color: #ffffff;
   font-family: Montserrat;
   font-style: normal;
@@ -79,8 +105,8 @@
   letter-spacing: 0.16em;
   margin-right: 15px;
 }
-.change .top .count,
-.change .bottom .count {
+.change .top .count input,
+.change .bottom .count input {
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
@@ -88,6 +114,10 @@
   line-height: 44px;
   letter-spacing: 0.16em;
   color: #9a9a9a;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: right;
 }
 .change .bottom .count,
 .change .top .count {
@@ -111,9 +141,8 @@
   margin-top: 10px;
 }
 .change .bottom .select {
-  background-color: #298cc3;
+  background-color: #6d6d6d;
   color: #ffffff;
-  padding: 6px 36px;
 }
 .connect-wallet {
   width: 100%;

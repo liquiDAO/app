@@ -18,15 +18,15 @@ function App() {
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
   const [checkedCoinTop, setCheckedCoinTop] = useState({
-    name: '',
-    image: 'coin.png',
+    title: 'L-BTC',
+    image: 'liquid-btc.svg',
   });
   const [checkedCoinBottom, setCheckedCoinBottom] = useState({
-    name: '',
-    image: 'coin.png',
+    title: 'L-BTC',
+    image: 'liquid-btc.svg',
   });
   const [checkSelect, setCheckSelect] = useState();
-  const selectToken = (evt) => {
+  const selectToken = (evt: any) => {
     setCheckSelect(evt);
     setSelectTokenDrop(true);
   };
@@ -39,7 +39,7 @@ function App() {
   const closeModalStake = () => {
     setStakeModal(false);
   };
-  const selectCoin = (evt) => {
+  const selectCoin = (evt: any) => {
     setSelectTokenDrop(false);
     if (checkSelect === 'top') {
       setCheckedCoinTop(evt);
@@ -92,7 +92,6 @@ function App() {
           </div>
         </div>
       </Router>
-
       {selectTokenDrop && (
         <div className="backdrop">
           <SelectToken closeModal={closeModal} selectCoin={selectCoin} />

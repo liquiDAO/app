@@ -17,7 +17,8 @@ const BorderLinearProgress = withStyles((theme) => ({
       'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
   },
 }))(LinearProgress);
-function Voting() {
+
+const Voting: React.FC = () => {
   return (
     <div className="Voting">
       <div className="header-voting">
@@ -74,5 +75,5 @@ function Voting() {
       </div>
     </div>
   );
-}
+};
 export default Voting;

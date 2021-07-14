@@ -115,23 +115,22 @@
   background: #42465e;
 }
 .chip-wallet li img {
+  width: 30px;
+  height: 30px;
   margin-right: 12px;
 }
 ::-webkit-scrollbar {
   width: 4px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #92949e;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #210039;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

@@ -2,14 +2,23 @@ import React from 'react';
 import './Swap.css';
 import { link } from '../../utils';
 
-export const Swap: React.FC = ({
+
+interface SwapProp {
+  selectToken: any;
+  checkedCoin: any;
+  checkCoinBottom: any;
+  isInstalled: boolean;
+  isConnected: boolean;
+}
+
+export const Swap: React.FC<SwapProp> = ({
   selectToken,
   checkedCoin,
   checkCoinBottom,
   isInstalled,
   isConnected,
-}: any) => {
 
+}) => {
   return (
     <div className="Swap">
       <div className="section-swap">
@@ -17,7 +26,6 @@ export const Swap: React.FC = ({
           <h2>SWAP</h2>
           <img src="/images/iconfinder_icons_settings_1564529 1.png" alt="" />
         </div>
-
         <div className="change">
           <div className="top" onClick={() => selectToken('top')}>
             <div className="select">
@@ -40,7 +48,6 @@ export const Swap: React.FC = ({
               <img src="/images/Vector.png" alt="" />
             </div>
           </div>
-
           <div className="bottom">
             <div className="select" onClick={() => selectToken('bottom')}>
               <span>Select a token</span>
@@ -56,8 +63,13 @@ export const Swap: React.FC = ({
               0.0
             </div>
           </div>
-
-          <button id="btn2" onClick={() => isInstalled === false && link} className="connect-wallet">{ isConnected ? 'Swap' : 'Connect wallet' }</button>
+          <button
+            id="btn2"
+            onClick={() => isInstalled === false && link}
+            className="connect-wallet"
+          >
+            {isConnected ? 'Swap' : 'Connect wallet'}
+          </button>
         </div>
       </div>
     </div>
