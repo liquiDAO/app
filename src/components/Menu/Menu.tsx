@@ -13,6 +13,14 @@ const Menu: React.FC<MenuProps> = ({
   isInstalled,
   isConnected,
 }) => {
+  const handleConnect = async () => {
+    if (!isInstalled) {
+      return alert('Marina is not installed');
+    }
+
+    await (window as any).marina.enable();
+  };
+
   return (
     <div className="Menu">
       <div className="actions">
@@ -21,13 +29,17 @@ const Menu: React.FC<MenuProps> = ({
           <span className="slider round" />
         </label>
         <p onClick={openModalStake}>STAKE</p>
-        <button
-          id="btn1"
-          style={{ display: isConnected ? 'none' : 'block' }}
-          onClick={() => isInstalled === false && handleInstall}
-        >
-          {isInstalled ? 'Connect wallet' : 'Install Marina wallet'}
-        </button>
+
+        {isInstalled && isConnected ? null : (
+          <>
+            {' '}
+            {isInstalled === false ? (
+              <button onClick={handleInstall}>Install Marina wallet</button>
+            ) : (
+              <button onClick={handleConnect}>Connect wallet</button>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
