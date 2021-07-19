@@ -1,9 +1,9 @@
-.Swap {
+.Swap{
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.section-swap {
+.section-swap{
   max-width: 1197px;
   width: 100%;
   background-color: #000836;
@@ -12,20 +12,19 @@
   margin-top: 100px;
   border-radius: 20px;
 }
-.header {
+.header{
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .change .top {
   position: relative;
 }
-.change .top,
-.change .bottom {
-  background: #42465e;
-  border: 1px solid #ffffff;
+.change .top, .change .bottom {
+  background: #42465E;
+  border: 1px solid #FFFFFF;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(57, 56, 56, 0.25);
   backdrop-filter: blur(4px);
@@ -39,7 +38,7 @@
 .change .top .convert {
   width: 60px;
   height: 60px;
-  border: 1px solid #ffffff;
+  border: 1px solid #FFFFFF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +47,7 @@
   bottom: -30px;
   left: calc(50% - 30px);
   z-index: 10000 !important;
-  background-color: #42465e;
+  background-color: #42465E;
   outline: none;
   cursor: pointer;
 }
@@ -56,24 +55,24 @@
   width: 15px;
   height: 15px;
 }
-.change .top .convert .top-arow {
+.change .top .convert .top-arow{
   width: 25px;
   height: 40px;
 }
+
 
 .change .top .select {
   display: flex;
 }
 .change .top .select span {
-  color: #ffffff;
+  color: #FFFFFF;
   margin: 0 15px;
 }
 .change .bottom .select span {
-  color: #ffffff;
+  color: #FFFFFF;
   margin: 0 15px;
 }
-.change .top .select,
-.change .bottom .select {
+.change .top .select, .change .bottom .select {
   max-width: 160px;
   width: 100%;
 
@@ -87,7 +86,7 @@
   cursor: pointer;
   outline: none;
 }
-.change .top .select .selectedCoin img {
+.change .top .select .selectedCoin img  {
   width: 30px;
   height: 30px;
 }
@@ -95,8 +94,8 @@
   width: 30px;
   height: 30px;
 }
-.change .top .count span {
-  color: #ffffff;
+.change .top .count span{
+  color: #FFFFFF;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
@@ -105,51 +104,48 @@
   letter-spacing: 0.16em;
   margin-right: 15px;
 }
-.change .top .count input,
-.change .bottom .count input {
+.change .top .count input,  .change .bottom .count input{
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 44px;
   letter-spacing: 0.16em;
-  color: #9a9a9a;
+  color: #9A9A9A;
   background: transparent;
   border: none;
   outline: none;
   text-align: right;
 }
-.change .bottom .count,
-.change .top .count {
+.change .bottom .count ,  .change .top .count  {
   display: flex;
   align-items: center;
 }
-.change .bottom .count .selectedCoin,
-.change .top .count .selectedCoin {
+.change .bottom .count .selectedCoin,  .change .top .count .selectedCoin{
   margin-right: 10px;
 }
-.change .bottom .count .selectedCoin img {
+.change .bottom .count .selectedCoin img{
   width: 30px;
   height: 30px;
 }
 
-.change .top .count .selectedCoin img {
+.change .top .count .selectedCoin img{
   width: 30px;
   height: 30px;
 }
-.bottom {
+.bottom{
   margin-top: 10px;
 }
 .change .bottom .select {
   background-color: #6d6d6d;
-  color: #ffffff;
+  color: #FFFFFF;
 }
-.connect-wallet {
+.connect-wallet{
   width: 100%;
-  color: #ffffff;
+  color: #FFFFFF;
   outline: none;
   border: none;
-  background: #c32977;
+  background: #C32977;
   box-shadow: 0px 4px 5px #151515;
   border-radius: 72px;
   box-sizing: border-box;
