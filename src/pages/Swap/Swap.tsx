@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Swap.css';
 import { handleInstall } from '../../utils';
+import { handlePair } from '../../utils/TedexSetup';
 
 interface SwapProp {
   selectToken: any;
@@ -39,6 +40,9 @@ export const Swap: React.FC<SwapProp> = ({
     if (!isConnected) {
       return alert('User must enable this website to proceed');
     }
+
+    console.log(amountToBeSent, amountToReceive);
+    handlePair();
   };
 
   return (
@@ -53,7 +57,7 @@ export const Swap: React.FC<SwapProp> = ({
                    <div className="top">
                         <div className="select" onClick={() => {selectToken('top')}}>
                             <div className="selectedCoin">
-                <img src={`/images/${checkedCoin.label}`} alt=""/>
+                <img src={`/images/${checkedCoin.image}`} alt=""/>
                             </div>
                             <span>{checkedCoin && checkedCoin.title}</span>
                             <img src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png" alt=""/>
