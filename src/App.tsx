@@ -47,6 +47,13 @@ function App() {
       setCheckedCoinBottom(evt);
     }
   };
+
+  const changeToken = (evt: any) => {
+    evt.stopPropagation();
+    setCheckedCoinTop(checkedCoinBottom)
+    setCheckedCoinBottom(checkedCoinTop)
+  }
+  
   return (
     <div
       className="App"
@@ -71,6 +78,7 @@ function App() {
                   checkCoinBottom={checkedCoinBottom}
                   isInstalled={isInstalled}
                   isConnected={isConnected}
+                  changeToken={changeToken}
                 />
               </Route>
               <Route exact path="/pools">
