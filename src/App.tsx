@@ -50,10 +50,10 @@ function App() {
 
   const changeToken = (evt: any) => {
     evt.stopPropagation();
-    setCheckedCoinTop(checkedCoinBottom)
-    setCheckedCoinBottom(checkedCoinTop)
-  }
-  
+    setCheckedCoinTop(checkedCoinBottom);
+    setCheckedCoinBottom(checkedCoinTop);
+  };
+
   return (
     <div
       className="App"

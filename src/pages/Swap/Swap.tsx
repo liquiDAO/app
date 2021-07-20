@@ -6,8 +6,8 @@ import { handleInstall } from '../../utils';
 import { onSendAmountChange } from '../../utils/TedexSetup';
 
 enum Asset {
-  base = "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
-  qoute = "9b3d7db7f93cae59e9407232b9864b54c21cba20b992d707fa45136fbfa9b8fa",
+  base = '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+  qoute = '9b3d7db7f93cae59e9407232b9864b54c21cba20b992d707fa45136fbfa9b8fa',
 }
 
 interface SwapProp {
@@ -72,7 +72,11 @@ export const Swap: React.FC<SwapProp> = ({
       const amount = Number(value);
 
       try {
-        const toRecieve = await onSendAmountChange(amount, TradeType.SELL, Asset.base);
+        const toRecieve = await onSendAmountChange(
+          amount,
+          TradeType.SELL,
+          Asset.base,
+        );
         setAmountToReceive(convertAmountToString(toRecieve));
         setIsPreviewing(false);
       } catch (error) {
@@ -95,7 +99,11 @@ export const Swap: React.FC<SwapProp> = ({
       const amount = Number(value);
 
       try {
-        const toRecieve = await onSendAmountChange(amount, TradeType.BUY, Asset.qoute);
+        const toRecieve = await onSendAmountChange(
+          amount,
+          TradeType.BUY,
+          Asset.qoute,
+        );
         setAmountToBeSent(convertAmountToString(toRecieve));
         setIsPreviewing(false);
       } catch (error) {
