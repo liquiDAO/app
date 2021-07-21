@@ -1,7 +1,7 @@
 import { TraderClient, TradeType } from 'tdex-sdk';
 import { toSatoshi } from './format';
 import BigNumber from 'bignumber.js';
-import { AssetHash } from './constants';
+import { Market } from './constants';
 
 const client = new TraderClient('http://localhost:9945');
 
@@ -24,8 +24,8 @@ export const onSendAmountChange = async (
   try {
     const pricesPreview = await client.marketPrice(
       {
-        baseAsset: AssetHash.BaseAsset,
-        quoteAsset: AssetHash.QuoteAsset,
+        baseAsset: Market.BaseAsset,
+        quoteAsset: Market.QuoteAsset,
       },
       trade,
       toSatoshi(amount),

@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js';
 import './Swap.css';
 import { handleInstall } from '../../utils';
 import { onSendAmountChange } from '../../utils/TedexSetup';
-import { AssetHash } from '../../utils/constants';
+import { Market } from '../../utils/constants';
 import ErrorMessage from '../../components/ErrorMessage';
 
 interface SwapProp {
@@ -75,7 +75,7 @@ export const Swap: React.FC<SwapProp> = ({
         const toRecieve = await onSendAmountChange(
           amount,
           TradeType.SELL,
-          AssetHash.BaseAsset,
+          Market.BaseAsset,
         );
         setAmountToReceive(convertAmountToString(toRecieve));
         setIsPreviewing(false);
@@ -102,7 +102,7 @@ export const Swap: React.FC<SwapProp> = ({
         const toRecieve = await onSendAmountChange(
           amount,
           TradeType.BUY,
-          AssetHash.QuoteAsset,
+          Market.QuoteAsset,
         );
         setAmountToBeSent(convertAmountToString(toRecieve));
         setIsPreviewing(false);
