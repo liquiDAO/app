@@ -12,7 +12,7 @@ export const handleMarkets = async () => {
 
     return markets;
   } catch (error) {
-    console.log('Price fetching failed', error);
+    throw new Error('TDEX provider and markets is not reachable');
   }
 };
 
@@ -31,14 +31,14 @@ export const onSendAmountChange = async (
       toSatoshi(amount),
       asset,
     );
+
     const price =
       trade === TradeType.SELL
         ? pricesPreview[0].price!.quotePrice
         : pricesPreview[0].price!.basePrice;
-    console.log(pricesPreview);
+
     return new BigNumber(price);
   } catch (error) {
-    console.log('On amount to send failed', error);
+    throw new Error('Price fetching failed');
   }
-  return null;
 };

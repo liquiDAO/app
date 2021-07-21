@@ -5,6 +5,7 @@ import './Swap.css';
 import { handleInstall } from '../../utils';
 import { onSendAmountChange } from '../../utils/TedexSetup';
 import { AssetHash } from '../../utils/constants';
+import ErrorMessage from '../../components/ErrorMessage';
 
 interface SwapProp {
   selectToken: any;
@@ -27,6 +28,9 @@ export const Swap: React.FC<SwapProp> = ({
   const [amountToBeSent, setAmountToBeSent] = useState<string>('0.0');
   const [amountToReceive, setAmountToReceive] = useState<string>('0.0');
   const [isPreviewing, setIsPreviewing] = useState<boolean>(false);
+  const [previewValueError, setPreviewValueError] = useState<Error | null>(
+    null,
+  );
 
   const handleConnect = async () => {
     if (!isInstalled) {
@@ -76,7 +80,7 @@ export const Swap: React.FC<SwapProp> = ({
         setAmountToReceive(convertAmountToString(toRecieve));
         setIsPreviewing(false);
       } catch (error) {
-        console.log('can not set amount to recieve', error);
+        setPreviewValueError(error);
       }
     }
   };
@@ -103,13 +107,13 @@ export const Swap: React.FC<SwapProp> = ({
         setAmountToBeSent(convertAmountToString(toRecieve));
         setIsPreviewing(false);
       } catch (error) {
-        console.log('can not set amount to recieve', error);
+        setPreviewValueError(error);
       }
     }
   };
 
-  const convertAmountToString = (amount: BigNumber | null): string =>
-    amount!.toNumber().toLocaleString('en-US', {
+  const convertAmountToString = (amount: BigNumber): string =>
+    amount.toNumber().toLocaleString('en-US', {
       maximumFractionDigits: 8,
     });
 
@@ -186,6 +190,11 @@ export const Swap: React.FC<SwapProp> = ({
               />
             </div>
           </div>
+          {previewValueError ? (
+            <ErrorMessage message={previewValueError.message} />
+          ) : (
+            <></>
+          )}
           {isInstalled && isConnected ? (
             <button onClick={handleSwap} className="connect-wallet">
               Swap
