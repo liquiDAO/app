@@ -4,11 +4,7 @@ import BigNumber from 'bignumber.js';
 import './Swap.css';
 import { handleInstall } from '../../utils';
 import { onSendAmountChange } from '../../utils/TedexSetup';
-
-enum Asset {
-  base = '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
-  qoute = '9b3d7db7f93cae59e9407232b9864b54c21cba20b992d707fa45136fbfa9b8fa',
-}
+import { AssetHash } from '../../utils/constants';
 
 interface SwapProp {
   selectToken: any;
@@ -75,7 +71,7 @@ export const Swap: React.FC<SwapProp> = ({
         const toRecieve = await onSendAmountChange(
           amount,
           TradeType.SELL,
-          Asset.base,
+          AssetHash.BaseAsset,
         );
         setAmountToReceive(convertAmountToString(toRecieve));
         setIsPreviewing(false);
@@ -102,7 +98,7 @@ export const Swap: React.FC<SwapProp> = ({
         const toRecieve = await onSendAmountChange(
           amount,
           TradeType.BUY,
-          Asset.qoute,
+          AssetHash.QuoteAsset,
         );
         setAmountToBeSent(convertAmountToString(toRecieve));
         setIsPreviewing(false);
