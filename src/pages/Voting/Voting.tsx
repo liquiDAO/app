@@ -22,10 +22,12 @@ const Voting: React.FC = () => {
   return (
     <div className="Voting">
       <div className="header-voting">
-        <h2>Voting</h2>
-        <button>NEXT VOTE</button>
+        {/* <h2>Voting</h2>
+        <button>NEXT VOTE</button> */}
       </div>
-      <div className="chips-voting">
+      <h1 style={{margin: '0px auto', textAlign: 'center', color: 'white'}}>Coming Soon</h1>
+      <img src="/images/illustration2.svg" style={{width: '100%'}} alt="Coming Soon"/>
+      {/* <div className="chips-voting">
         <div className="chip-voting">
           Status
           <img
@@ -72,7 +74,7 @@ const Voting: React.FC = () => {
             <BorderLinearProgress variant="determinate" value={70} />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
