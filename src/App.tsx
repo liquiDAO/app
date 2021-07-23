@@ -13,17 +13,21 @@ import SelectToken from './components/SelectToken/SelectToken';
 import Stake from './components/Stake/Stake';
 import { Swap } from './pages/Swap/Swap';
 import { useChecks } from './utils';
+
 function App() {
   const [isInstalled, isConnected] = useChecks();
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
+  const [isSelectError, setIsSelectError] = useState<string>('');
   const [checkedCoinTop, setCheckedCoinTop] = useState({
-    title: 'L-BTC',
+    title: 'L_BTC',
     image: 'liquid-btc.svg',
+    hash: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
   });
   const [checkedCoinBottom, setCheckedCoinBottom] = useState({
-    title: 'L-BTC',
-    image: 'liquid-btc.svg',
+    title: 'L_USDT',
+    image: 'liquid-tether.svg',
+    hash: '9b3d7db7f93cae59e9407232b9864b54c21cba20b992d707fa45136fbfa9b8fa',
   });
   const [checkSelect, setCheckSelect] = useState();
   const selectToken = (evt: any) => {
@@ -41,10 +45,29 @@ function App() {
   };
   const selectCoin = (evt: any) => {
     setSelectTokenDrop(false);
-    if (checkSelect === 'top') {
-      setCheckedCoinTop(evt);
-    } else {
-      setCheckedCoinBottom(evt);
+    console.log(evt);
+    
+    switch (checkSelect!) {
+      case 'top': {
+        if (evt.title === checkedCoinBottom.title) {
+          setIsSelectError('Trading pair is not supported');
+        } else {
+          setIsSelectError('');
+          setCheckedCoinTop(evt);
+        }
+        break;
+      }
+      case 'bottom': {
+        if (evt.title === checkedCoinTop.title) {
+          setIsSelectError('Trading pair is not supported');
+        } else {
+          setIsSelectError('');
+          setCheckedCoinBottom(evt);
+        }
+        break;
+      }  
+      default:
+        break;
     }
   };
 
@@ -79,6 +102,7 @@ function App() {
                   isInstalled={isInstalled}
                   isConnected={isConnected}
                   changeToken={changeToken}
+                  selectError={isSelectError}
                 />
               </Route>
               <Route exact path="/pools">
