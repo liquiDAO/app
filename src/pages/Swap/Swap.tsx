@@ -3,7 +3,7 @@ import { TradeType } from 'tdex-sdk';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
 import { handleInstall } from '../../utils';
-import { onSendAmountChange } from '../../utils/TedexSetup';
+import { onSendAmountChange, marketDirection, handleMarkets } from '../../utils/TedexSetup';
 import { Market } from '../../utils/constants';
 import ErrorMessage from '../../components/ErrorMessage';
 
@@ -14,6 +14,7 @@ interface SwapProp {
   isInstalled: boolean;
   isConnected: boolean;
   changeToken: any;
+  selectError: string | null;
 }
 
 export const Swap: React.FC<SwapProp> = ({
@@ -23,6 +24,7 @@ export const Swap: React.FC<SwapProp> = ({
   isInstalled,
   isConnected,
   changeToken,
+  selectError,
 }) => {
   const [changeFlag, setChangeFlag] = useState<boolean>(false);
   const [amountToBeSent, setAmountToBeSent] = useState<string>('0.0');
@@ -48,6 +50,7 @@ export const Swap: React.FC<SwapProp> = ({
     if (!isConnected) {
       return alert('User must enable this website to proceed');
     }
+    handleMarkets();
   };
 
   const amountIsPositive = (x: any): boolean => {
@@ -58,7 +61,7 @@ export const Swap: React.FC<SwapProp> = ({
     return false;
   };
 
-  const handleBaseAsset = async (
+  const handleSendAmountChange = async (
     evt: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
     if (isPreviewing) return;
@@ -66,16 +69,18 @@ export const Swap: React.FC<SwapProp> = ({
     const value = evt.target.value;
     setAmountToBeSent(value);
 
-    if (amountIsPositive(value)) {
+    if (amountIsPositive(value) && selectError === '') {
       setIsPreviewing(true);
 
       const amount = Number(value);
 
+      const direction = marketDirection(checkedCoin);
+
       try {
         const toRecieve = await onSendAmountChange(
           amount,
-          TradeType.SELL,
-          Market.BaseAsset,
+          direction ? TradeType.SELL : TradeType.BUY,
+          Market.L_BTC,
         );
         setAmountToReceive(convertAmountToString(toRecieve));
         setIsPreviewing(false);
@@ -85,7 +90,7 @@ export const Swap: React.FC<SwapProp> = ({
     }
   };
 
-  const handleQouteAsset = async (
+  const handleReceiveAmountChange = async (
     evt: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
     if (isPreviewing) return;
@@ -93,16 +98,18 @@ export const Swap: React.FC<SwapProp> = ({
     const value = evt.target.value;
     setAmountToReceive(value);
 
-    if (amountIsPositive(value)) {
+    if (amountIsPositive(value) && selectError === '') {
       setIsPreviewing(true);
 
       const amount = Number(value);
 
+      const direction = marketDirection(checkCoinBottom);
+
       try {
         const toRecieve = await onSendAmountChange(
           amount,
-          TradeType.BUY,
-          Market.QuoteAsset,
+          direction ? TradeType.BUY : TradeType.SELL,
+          Market.L_BTC,
         );
         setAmountToBeSent(convertAmountToString(toRecieve));
         setIsPreviewing(false);
@@ -148,7 +155,7 @@ export const Swap: React.FC<SwapProp> = ({
                 placeholder="0.0"
                 value={amountToBeSent}
                 onChange={(evt) => {
-                  handleBaseAsset(evt);
+                  handleSendAmountChange(evt);
                 }}
               />
             </div>
@@ -158,6 +165,8 @@ export const Swap: React.FC<SwapProp> = ({
                 let flag = !changeFlag;
                 setChangeFlag(flag);
                 changeToken(evt);
+                setAmountToBeSent(amountToReceive);
+                setAmountToReceive(amountToBeSent);
               }}
             >
               {changeFlag ? (
@@ -185,11 +194,12 @@ export const Swap: React.FC<SwapProp> = ({
                 placeholder="0.0"
                 value={amountToReceive}
                 onChange={(evt) => {
-                  handleQouteAsset(evt);
+                  handleReceiveAmountChange(evt);
                 }}
               />
             </div>
           </div>
+          {selectError ? <ErrorMessage message={selectError} /> : <></>}
           {previewValueError ? (
             <ErrorMessage message={previewValueError.message} />
           ) : (

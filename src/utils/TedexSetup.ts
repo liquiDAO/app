@@ -24,21 +24,36 @@ export const onSendAmountChange = async (
   try {
     const pricesPreview = await client.marketPrice(
       {
-        baseAsset: Market.BaseAsset,
-        quoteAsset: Market.QuoteAsset,
+        baseAsset: Market.L_BTC,
+        quoteAsset: Market.L_USDT,
       },
       trade,
       toSatoshi(amount),
       asset,
     );
 
-    const price =
-      trade === TradeType.SELL
-        ? pricesPreview[0].price!.quotePrice
-        : pricesPreview[0].price!.basePrice;
+    console.log(pricesPreview);
+    
+
+    const price = pricesPreview[0].amount;
 
     return new BigNumber(price);
   } catch (error) {
+    console.log('eeroor');
+    
     throw new Error('Price fetching failed');
   }
 };
+
+interface KnownAsset {
+  title?: string;
+  image?: string;
+  hash?: string;
+}
+
+export const marketDirection = (asset: KnownAsset) => {
+  if (Market.L_BTC === asset.hash) {
+    return true;
+  }
+  return false;
+}
