@@ -1,7 +1,21 @@
 import { TraderClient, TradeType } from 'tdex-sdk';
-import { toSatoshi } from './format';
+import { toSatoshi, fromSatoshi } from './format';
 import BigNumber from 'bignumber.js';
-import { Market } from './constants';
+import { Market, Markets } from './constants';
+
+interface KnownAsset {
+  title: string;
+  image: string;
+  hash: string;
+  precision: number;
+}
+
+interface PairMarket {
+  market: {
+    base_asset: string;
+    quote_asset: string;
+  };
+}
 
 const client = new TraderClient('http://localhost:9945');
 
@@ -16,44 +30,51 @@ export const handleMarkets = async () => {
   }
 };
 
-export const onSendAmountChange = async (
+export const previewAmount = async (
   amount: number,
   trade: TradeType,
-  asset: string,
-) => {
+  asset: KnownAsset,
+  market: PairMarket,
+  precision: number
+): Promise<BigNumber> => {
   try {
     const pricesPreview = await client.marketPrice(
       {
-        baseAsset: Market.L_BTC,
-        quoteAsset: Market.L_USDT,
+        baseAsset: market.market.base_asset,
+        quoteAsset: market.market.quote_asset,
       },
       trade,
-      toSatoshi(amount),
-      asset,
+      toSatoshi(amount, asset.precision),
+      asset.hash,
     );
 
     console.log(pricesPreview);
-    
 
-    const price = pricesPreview[0].amount;
+    const previewedAmount = fromSatoshi(pricesPreview[0].amount, precision);
 
-    return new BigNumber(price);
+    return new BigNumber(previewedAmount);
   } catch (error) {
-    console.log('eeroor');
-    
     throw new Error('Price fetching failed');
   }
 };
 
-interface KnownAsset {
-  title?: string;
-  image?: string;
-  hash?: string;
-}
-
 export const marketDirection = (asset: KnownAsset) => {
-  if (Market.L_BTC === asset.hash) {
+  if (Market.BaseAsset === asset.hash) {
     return true;
   }
   return false;
-}
+};
+
+export const MarketPair = (
+  baseCurrency: string,
+  quoteCurrency: string,
+): PairMarket => {
+  const found = Markets.markets.find(
+    (el: any, i: any) =>
+      el.market['quote_asset'] === quoteCurrency &&
+      el.market['base_asset'] === baseCurrency,
+  );
+  console.log(found);
+  
+  return found;
+};

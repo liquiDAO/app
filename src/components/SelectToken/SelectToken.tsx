@@ -5,15 +5,17 @@ import json from '../../data.json';
 interface CoinOptionType {
   title: string;
   image?: string;
+  hash: string;
+  precision: number;
 }
 
 function SelectToken({ closeModal, selectCoin }: any) {
-  const [data, setData] = useState<CoinOptionType[]>(json.coin);
-  const [commonData] = useState<CoinOptionType[]>(json.coin);
+  const [data, setData] = useState<CoinOptionType[]>(json);
+  const [commonData] = useState<CoinOptionType[]>(json);
 
   const filterHandler = (event: any) => {
     if (event.length === 0) {
-      setData(json.coin);
+      setData(json);
     } else {
       let FilterCoinData = data.filter((item: CoinOptionType) => {
         return item.title.toLowerCase().includes(event.toLowerCase());

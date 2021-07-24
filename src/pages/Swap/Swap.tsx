@@ -3,7 +3,7 @@ import { TradeType } from 'tdex-sdk';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
 import { handleInstall } from '../../utils';
-import { onSendAmountChange, marketDirection, handleMarkets } from '../../utils/TedexSetup';
+import { previewAmount, marketDirection, handleMarkets, MarketPair } from '../../utils/TedexSetup';
 import { Market } from '../../utils/constants';
 import ErrorMessage from '../../components/ErrorMessage';
 
@@ -33,6 +33,8 @@ export const Swap: React.FC<SwapProp> = ({
   const [previewValueError, setPreviewValueError] = useState<Error | null>(
     null,
   );
+
+  const providerMarket = MarketPair(checkedCoin.hash, checkCoinBottom.hash);
 
   const handleConnect = async () => {
     if (!isInstalled) {
@@ -77,14 +79,17 @@ export const Swap: React.FC<SwapProp> = ({
       const direction = marketDirection(checkedCoin);
 
       try {
-        const toRecieve = await onSendAmountChange(
+        const toRecieve = await previewAmount(
           amount,
           direction ? TradeType.SELL : TradeType.BUY,
-          Market.L_BTC,
+          checkedCoin,
+          providerMarket,
+          checkCoinBottom.precision,
         );
-        setAmountToReceive(convertAmountToString(toRecieve));
+        setAmountToReceive(convertAmountToString(toRecieve, checkedCoin.precision));
         setIsPreviewing(false);
       } catch (error) {
+        setIsPreviewing(false);
         setPreviewValueError(error);
       }
     }
@@ -106,22 +111,25 @@ export const Swap: React.FC<SwapProp> = ({
       const direction = marketDirection(checkCoinBottom);
 
       try {
-        const toRecieve = await onSendAmountChange(
+        const toRecieve = await previewAmount(
           amount,
           direction ? TradeType.BUY : TradeType.SELL,
-          Market.L_BTC,
+          checkCoinBottom,
+          providerMarket,
+          checkedCoin.precision,
         );
-        setAmountToBeSent(convertAmountToString(toRecieve));
+        setAmountToBeSent(convertAmountToString(toRecieve, checkCoinBottom.precision));
         setIsPreviewing(false);
       } catch (error) {
+        setIsPreviewing(false);
         setPreviewValueError(error);
       }
     }
   };
 
-  const convertAmountToString = (amount: BigNumber): string =>
+  const convertAmountToString = (amount: BigNumber, precision: number): string =>
     amount.toNumber().toLocaleString('en-US', {
-      maximumFractionDigits: 8,
+      maximumFractionDigits: precision,
     });
 
   return (

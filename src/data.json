@@ -1,14 +1,14 @@
-{
-  "coin": [
-    {
-      "title": "L_BTC",
-      "image": "liquid-btc.svg",
-      "hash": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
-    },
-    {
-      "title": "L_USDT",
-      "image": "liquid-tether.svg",
-      "hash": "9b3d7db7f93cae59e9407232b9864b54c21cba20b992d707fa45136fbfa9b8fa"
-    }
-  ]
-}
+[
+  {
+    "title": "L_BTC",
+    "image": "liquid-btc.svg",
+    "hash": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
+    "precision": 8
+  },
+  {
+    "title": "L_USDT",
+    "image": "liquid-tether.svg",
+    "hash": "9b3d7db7f93cae59e9407232b9864b54c21cba20b992d707fa45136fbfa9b8fa",
+    "precision": 8
+  }
+]
