@@ -46,7 +46,7 @@ function App() {
   const selectCoin = (evt: any) => {
     setSelectTokenDrop(false);
     console.log(evt);
-    
+
     switch (checkSelect!) {
       case 'top': {
         if (evt.title === checkedCoinBottom.title) {
@@ -65,7 +65,7 @@ function App() {
           setCheckedCoinBottom(evt);
         }
         break;
-      }  
+      }
       default:
         break;
     }

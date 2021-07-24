@@ -35,7 +35,7 @@ export const previewAmount = async (
   trade: TradeType,
   asset: KnownAsset,
   market: PairMarket,
-  precision: number
+  precision: number,
 ): Promise<BigNumber> => {
   try {
     const pricesPreview = await client.marketPrice(
@@ -75,6 +75,6 @@ export const MarketPair = (
       el.market['base_asset'] === baseCurrency,
   );
   console.log(found);
-  
+
   return found;
 };

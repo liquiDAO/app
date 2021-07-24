@@ -3,7 +3,12 @@ import { TradeType } from 'tdex-sdk';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
 import { handleInstall } from '../../utils';
-import { previewAmount, marketDirection, handleMarkets, MarketPair } from '../../utils/TedexSetup';
+import {
+  previewAmount,
+  marketDirection,
+  handleMarkets,
+  MarketPair,
+} from '../../utils/TedexSetup';
 import { Market } from '../../utils/constants';
 import ErrorMessage from '../../components/ErrorMessage';
 
@@ -86,7 +91,9 @@ export const Swap: React.FC<SwapProp> = ({
           providerMarket,
           checkCoinBottom.precision,
         );
-        setAmountToReceive(convertAmountToString(toRecieve, checkedCoin.precision));
+        setAmountToReceive(
+          convertAmountToString(toRecieve, checkedCoin.precision),
+        );
         setIsPreviewing(false);
       } catch (error) {
         setIsPreviewing(false);
@@ -118,7 +125,9 @@ export const Swap: React.FC<SwapProp> = ({
           providerMarket,
           checkedCoin.precision,
         );
-        setAmountToBeSent(convertAmountToString(toRecieve, checkCoinBottom.precision));
+        setAmountToBeSent(
+          convertAmountToString(toRecieve, checkCoinBottom.precision),
+        );
         setIsPreviewing(false);
       } catch (error) {
         setIsPreviewing(false);
@@ -127,7 +136,10 @@ export const Swap: React.FC<SwapProp> = ({
     }
   };
 
-  const convertAmountToString = (amount: BigNumber, precision: number): string =>
+  const convertAmountToString = (
+    amount: BigNumber,
+    precision: number,
+  ): string =>
     amount.toNumber().toLocaleString('en-US', {
       maximumFractionDigits: precision,
     });
