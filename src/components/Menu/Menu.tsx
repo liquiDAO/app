@@ -1,6 +1,7 @@
 import React from 'react';
 import './Menu.css';
 import { link } from '../../utils';
+import { isMobileOnly } from 'react-device-detect';
 
 interface MenuProps {
   openModalStake: any;
@@ -13,6 +14,10 @@ const Menu: React.FC<MenuProps> = ({
   isInstalled,
   isConnected,
 }) => {
+  if (isMobileOnly) {
+    return <></>;
+  }
+
   return (
     <div className="Menu">
       <div className="actions">

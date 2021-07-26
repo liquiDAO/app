@@ -5,8 +5,14 @@ const Lend: React.FC = () => {
   return (
     <div className="Lend">
       <div className="wrapper">
-      <h1 style={{margin: '0px auto', textAlign: 'center', color: 'white'}}>Coming Soon</h1>
-      <img src="/images/illustration2.svg" style={{width: '100%'}} alt="Coming Soon"/>
+        <h1 style={{ margin: '0px auto', textAlign: 'center', color: 'white' }}>
+          Coming Soon
+        </h1>
+        <img
+          src="/images/illustration2.svg"
+          style={{ width: '100%' }}
+          alt="Coming Soon"
+        />
         {/* <div className="findOffers">
           <h2>Find offers</h2>
           <div className="chips-voting">

@@ -11,10 +11,16 @@ const Reward: React.FC = () => {
           </h2> */}
         </div>
       </div>
-      <h1 style={{margin: '0px auto', textAlign: 'center', color: 'white'}}>Coming Soon</h1>
+      <h1 style={{ margin: '0px auto', textAlign: 'center', color: 'white' }}>
+        Coming Soon
+      </h1>
 
       <div className="section-reward">
-      <img src="/images/illustration2.svg" style={{width: '100%'}} alt="Coming Soon"/>
+        <img
+          src="/images/illustration2.svg"
+          style={{ width: '100%' }}
+          alt="Coming Soon"
+        />
         {/* <div className="box-reward">
           <div className="stakes-section">
             <div className="block-section">
