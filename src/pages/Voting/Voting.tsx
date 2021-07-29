@@ -22,9 +22,7 @@ import Mobile from '../NoMobileSupport/Mobile';
 
 const Voting: React.FC = () => {
   if (isMobileOnly) {
-    return (
-      <Mobile/>
-    );
+    return <Mobile />;
   }
   return (
     <div className="Voting">

@@ -5,9 +5,7 @@ import Mobile from '../NoMobileSupport/Mobile';
 
 const Dervatives: React.FC = () => {
   if (isMobileOnly) {
-    return (
-      <Mobile/>
-    );
+    return <Mobile />;
   }
   return (
     <div className="Dervatives">

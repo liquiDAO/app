@@ -5,9 +5,7 @@ import './Reward.css';
 
 const Reward: React.FC = () => {
   if (isMobileOnly) {
-    return (
-      <Mobile/>
-    );
+    return <Mobile />;
   }
   return (
     <div className="Reward">

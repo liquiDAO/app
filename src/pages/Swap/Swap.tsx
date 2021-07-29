@@ -20,9 +20,7 @@ export const Swap: React.FC<SwapProp> = ({
   isConnected,
 }) => {
   if (isMobileOnly) {
-    return (
-      <Mobile/>
-    );
+    return <Mobile />;
   }
   return (
     <div className="Swap">

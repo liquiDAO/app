@@ -5,9 +5,7 @@ import { isMobileOnly } from 'react-device-detect';
 
 const Lend: React.FC = () => {
   if (isMobileOnly) {
-    return (
-      <Mobile/>
-    );
+    return <Mobile />;
   }
   return (
     <div className="Lend">

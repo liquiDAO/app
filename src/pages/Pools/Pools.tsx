@@ -6,9 +6,7 @@ import Mobile from '../NoMobileSupport/Mobile';
 
 const Pools: React.FC = () => {
   if (isMobileOnly) {
-    return (
-      <Mobile/>
-    );
+    return <Mobile />;
   }
   return (
     <div className="Pools">
