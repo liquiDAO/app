@@ -1,10 +1,13 @@
 import React from 'react';
-import { isMobileOnly } from 'react-device-detect';
 import Mobile from '../NoMobileSupport/Mobile';
 import './Reward.css';
 
-const Reward: React.FC = () => {
-  if (isMobileOnly) {
+interface RewardsProps {
+  isMobile: boolean;
+}
+
+const Reward: React.FC<RewardsProps> = ({ isMobile }) => {
+  if (isMobile) {
     return <Mobile />;
   }
   return (

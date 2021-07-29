@@ -1,21 +1,21 @@
 import React from 'react';
 import './Menu.css';
-import { link } from '../../utils';
-import { isMobileOnly } from 'react-device-detect';
 import { handleInstall } from '../../utils';
 
 interface MenuProps {
   openModalStake: any;
   isInstalled: boolean;
   isConnected: boolean;
+  isMobile: boolean;
 }
 
 const Menu: React.FC<MenuProps> = ({
   openModalStake,
   isInstalled,
   isConnected,
+  isMobile
 }) => {
-  if (isMobileOnly) {
+  if (isMobile) {
     return <></>;
   }
   const handleConnect = async () => {

@@ -1,10 +1,13 @@
 import React from 'react';
 import Mobile from '../NoMobileSupport/Mobile';
 import './Lend.css';
-import { isMobileOnly } from 'react-device-detect';
 
-const Lend: React.FC = () => {
-  if (isMobileOnly) {
+interface LendProps {
+  isMobile: boolean;
+}
+
+const Lend: React.FC<LendProps> = ({ isMobile }) => {
+  if (isMobile) {
     return <Mobile />;
   }
   return (

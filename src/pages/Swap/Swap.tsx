@@ -1,7 +1,5 @@
 import React from 'react';
 import './Swap.css';
-import { link } from '../../utils';
-import { isMobileOnly } from 'react-device-detect';
 import Mobile from '../NoMobileSupport/Mobile';
 import { handleInstall } from '../../utils';
 
@@ -11,6 +9,7 @@ interface SwapProp {
   checkCoinBottom: any;
   isInstalled: boolean;
   isConnected: boolean;
+  isMobile: boolean;
 }
 
 export const Swap: React.FC<SwapProp> = ({
@@ -19,8 +18,9 @@ export const Swap: React.FC<SwapProp> = ({
   checkCoinBottom,
   isInstalled,
   isConnected,
+  isMobile,
 }) => {
-  if (isMobileOnly) {
+  if (isMobile) {
     return <Mobile />;
   }
   const handleConnect = async () => {

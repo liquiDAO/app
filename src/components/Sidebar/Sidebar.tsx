@@ -1,10 +1,13 @@
 import React from 'react';
 import './Sidebar.css';
 import { NavLink } from 'react-router-dom';
-import { isMobileOnly } from 'react-device-detect';
 
-const Sidebar: React.FC = () => {
-  if (isMobileOnly) {
+interface SidebarProps {
+  isMobile: boolean;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isMobile }) => {
+  if (isMobile) {
     return <></>;
   }
 

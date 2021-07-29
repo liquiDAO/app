@@ -1,11 +1,14 @@
 import React from 'react';
 import './Pools.css';
 import img from '../../../public/images/illustration2.svg';
-import { isMobileOnly } from 'react-device-detect';
 import Mobile from '../NoMobileSupport/Mobile';
 
-const Pools: React.FC = () => {
-  if (isMobileOnly) {
+interface PoolProps {
+  isMobile: boolean;
+}
+
+const Pools: React.FC<PoolProps> = ({ isMobile }) => {
+  if (isMobile) {
     return <Mobile />;
   }
   return (

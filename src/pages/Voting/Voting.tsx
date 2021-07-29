@@ -1,6 +1,5 @@
 import React from 'react';
 import './Voting.css';
-import { isMobileOnly } from 'react-device-detect';
 import Mobile from '../NoMobileSupport/Mobile';
 // import { withStyles } from '@material-ui/core/styles';
 // import LinearProgress from '@material-ui/core/LinearProgress';
@@ -20,8 +19,12 @@ import Mobile from '../NoMobileSupport/Mobile';
 //   },
 // }))(LinearProgress);
 
-const Voting: React.FC = () => {
-  if (isMobileOnly) {
+interface VotingProps {
+  isMobile: boolean;
+}
+
+const Voting: React.FC<VotingProps> = ({ isMobile }) => {
+  if (isMobile) {
     return <Mobile />;
   }
   return (

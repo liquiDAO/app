@@ -1,10 +1,13 @@
 import React from 'react';
 import './Dervatives.css';
-import { isMobileOnly } from 'react-device-detect';
 import Mobile from '../NoMobileSupport/Mobile';
 
-const Dervatives: React.FC = () => {
-  if (isMobileOnly) {
+interface DervativesProps {
+  isMobile: boolean;
+}
+
+const Dervatives: React.FC<DervativesProps> = ({ isMobile }) => {
+  if (isMobile) {
     return <Mobile />;
   }
   return (
