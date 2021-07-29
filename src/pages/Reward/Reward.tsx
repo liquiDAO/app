@@ -1,19 +1,35 @@
 import React from 'react';
+import Mobile from '../NoMobileSupport/Mobile';
 import './Reward.css';
 
-const Reward: React.FC = () => {
+interface RewardsProps {
+  isMobile: boolean;
+}
+
+const Reward: React.FC<RewardsProps> = ({ isMobile }) => {
+  if (isMobile) {
+    return <Mobile />;
+  }
   return (
     <div className="Reward">
       <div className="header-reward">
         <div className="title-reward">
-          <h2>
+          {/* <h2>
             Summary: <span>120 token LDAO</span>
-          </h2>
+          </h2> */}
         </div>
       </div>
+      <h1 style={{ margin: '0px auto', textAlign: 'center', color: 'white' }}>
+        Coming Soon
+      </h1>
 
       <div className="section-reward">
-        <div className="box-reward">
+        <img
+          src="/images/illustration2.svg"
+          style={{ width: '100%' }}
+          alt="Coming Soon"
+        />
+        {/* <div className="box-reward">
           <div className="stakes-section">
             <div className="block-section">
               <h4>My stakes</h4>
@@ -78,7 +94,7 @@ const Reward: React.FC = () => {
               <img src="/images/Arrow 3.png" alt="" />
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

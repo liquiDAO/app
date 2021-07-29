@@ -1,31 +1,47 @@
 import React from 'react';
 import './Voting.css';
-import { withStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
-const BorderLinearProgress = withStyles((theme) => ({
-  root: {
-    height: 10,
-    borderRadius: 5,
-  },
-  colorPrimary: {
-    backgroundColor:
-      'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
-  },
-  bar: {
-    borderRadius: 5,
-    backgroundColor:
-      'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
-  },
-}))(LinearProgress);
+import Mobile from '../NoMobileSupport/Mobile';
+// import { withStyles } from '@material-ui/core/styles';
+// import LinearProgress from '@material-ui/core/LinearProgress';
+// const BorderLinearProgress = withStyles((theme) => ({
+//   root: {
+//     height: 10,
+//     borderRadius: 5,
+//   },
+//   colorPrimary: {
+//     backgroundColor:
+//       'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
+//   },
+//   bar: {
+//     borderRadius: 5,
+//     backgroundColor:
+//       'linear-gradient(93.61deg, #C32977 0%, #771145 52.6%, #580830 100%)',
+//   },
+// }))(LinearProgress);
 
-const Voting: React.FC = () => {
+interface VotingProps {
+  isMobile: boolean;
+}
+
+const Voting: React.FC<VotingProps> = ({ isMobile }) => {
+  if (isMobile) {
+    return <Mobile />;
+  }
   return (
     <div className="Voting">
       <div className="header-voting">
-        <h2>Voting</h2>
-        <button>NEXT VOTE</button>
+        {/* <h2>Voting</h2>
+        <button>NEXT VOTE</button> */}
       </div>
-      <div className="chips-voting">
+      <h1 style={{ margin: '0px auto', textAlign: 'center', color: 'white' }}>
+        Coming Soon
+      </h1>
+      <img
+        src="/images/illustration2.svg"
+        style={{ width: '100%' }}
+        alt="Coming Soon"
+      />
+      {/* <div className="chips-voting">
         <div className="chip-voting">
           Status
           <img
@@ -72,7 +88,7 @@ const Voting: React.FC = () => {
             <BorderLinearProgress variant="determinate" value={70} />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

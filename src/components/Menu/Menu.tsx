@@ -6,13 +6,18 @@ interface MenuProps {
   openModalStake: any;
   isInstalled: boolean;
   isConnected: boolean;
+  isMobile: boolean;
 }
 
 const Menu: React.FC<MenuProps> = ({
   openModalStake,
   isInstalled,
   isConnected,
+  isMobile,
 }) => {
+  if (isMobile) {
+    return <></>;
+  }
   const handleConnect = async () => {
     if (!isInstalled) {
       return alert('Marina is not installed');

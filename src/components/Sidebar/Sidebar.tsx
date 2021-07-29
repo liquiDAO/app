@@ -1,29 +1,37 @@
 import React from 'react';
 import './Sidebar.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isMobile: boolean;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isMobile }) => {
+  if (isMobile) {
+    return <></>;
+  }
+
   return (
     <div className="Sidebar">
       <ul>
-        <Link className="link" to="/">
+        <NavLink activeClassName="isActive" className="link" exact to="/">
           <li>SWAP</li>
-        </Link>
-        <Link className="link" to="/pools">
+        </NavLink>
+        <NavLink activeClassName="isActive" className="link" to="/pools">
           <li>POOLS</li>
-        </Link>
-        <Link className="link" to="/reward">
+        </NavLink>
+        <NavLink activeClassName="isActive" className="link" to="/reward">
           <li>REWARD</li>
-        </Link>
-        <Link className="link" to="/voting">
+        </NavLink>
+        <NavLink activeClassName="isActive" className="link" to="/voting">
           <li>VOTING</li>
-        </Link>
-        <Link className="link" to="/lend">
+        </NavLink>
+        <NavLink activeClassName="isActive" className="link" to="/lend">
           <li>LEND</li>
-        </Link>
-        <Link className="link" to="/dervatives">
+        </NavLink>
+        <NavLink activeClassName="isActive" className="link" to="/dervatives">
           <li>DERVATIVES</li>
-        </Link>
+        </NavLink>
       </ul>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Menu from './components/Menu/Menu';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -26,6 +26,19 @@ function App() {
     image: 'liquid-btc.svg',
   });
   const [checkSelect, setCheckSelect] = useState();
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  let isMobile: boolean = width <= 768;
+
   const selectToken = (evt: any) => {
     setCheckSelect(evt);
     setSelectTokenDrop(true);
@@ -57,10 +70,11 @@ function App() {
           isInstalled={isInstalled}
           isConnected={isConnected}
           openModalStake={openModalStake}
+          isMobile={isMobile}
         />
         <div className="layout">
           <div className="sideBar">
-            <Sidebar />
+            <Sidebar isMobile={isMobile} />
           </div>
           <div className="section">
             <Switch>
@@ -71,22 +85,23 @@ function App() {
                   checkCoinBottom={checkedCoinBottom}
                   isInstalled={isInstalled}
                   isConnected={isConnected}
+                  isMobile={isMobile}
                 />
               </Route>
               <Route exact path="/pools">
-                <Pools />
+                <Pools isMobile={isMobile} />
               </Route>
               <Route exact path="/reward">
-                <Reward />
+                <Reward isMobile={isMobile} />
               </Route>
               <Route exact path="/voting">
-                <Voting />
+                <Voting isMobile={isMobile} />
               </Route>
               <Route exact path="/lend">
-                <Lend />
+                <Lend isMobile={isMobile} />
               </Route>
               <Route exact path="/dervatives">
-                <Dervatives />
+                <Dervatives isMobile={isMobile} />
               </Route>
             </Switch>
           </div>

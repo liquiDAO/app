@@ -153,12 +153,13 @@
   box-shadow: 0px 4px 5px #151515;
   border-radius: 72px;
   box-sizing: border-box;
-  padding: 12px 0;
+  padding: 12px 24px;
   margin-top: 43px;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
+  font-size: clamp(100%, 1rem + 2vw, 24px);
   line-height: 44px;
   letter-spacing: 0.16em;
   cursor: pointer;

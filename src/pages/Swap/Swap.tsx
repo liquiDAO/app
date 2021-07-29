@@ -1,5 +1,6 @@
 import React from 'react';
 import './Swap.css';
+import Mobile from '../NoMobileSupport/Mobile';
 import { handleInstall } from '../../utils';
 
 interface SwapProp {
@@ -8,6 +9,7 @@ interface SwapProp {
   checkCoinBottom: any;
   isInstalled: boolean;
   isConnected: boolean;
+  isMobile: boolean;
 }
 
 export const Swap: React.FC<SwapProp> = ({
@@ -16,7 +18,11 @@ export const Swap: React.FC<SwapProp> = ({
   checkCoinBottom,
   isInstalled,
   isConnected,
+  isMobile,
 }) => {
+  if (isMobile) {
+    return <Mobile />;
+  }
   const handleConnect = async () => {
     if (!isInstalled) {
       return alert('Marina is not installed');
