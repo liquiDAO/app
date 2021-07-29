@@ -13,7 +13,7 @@ const Menu: React.FC<MenuProps> = ({
   openModalStake,
   isInstalled,
   isConnected,
-  isMobile
+  isMobile,
 }) => {
   if (isMobile) {
     return <></>;
