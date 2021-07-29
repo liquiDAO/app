@@ -1,6 +1,8 @@
 import React from 'react';
 import './Swap.css';
 import { link } from '../../utils';
+import { isMobileOnly } from 'react-device-detect';
+import Mobile from '../NoMobileSupport/Mobile';
 
 interface SwapProp {
   selectToken: any;
@@ -17,6 +19,11 @@ export const Swap: React.FC<SwapProp> = ({
   isInstalled,
   isConnected,
 }) => {
+  if (isMobileOnly) {
+    return (
+      <Mobile/>
+    );
+  }
   return (
     <div className="Swap">
       <div className="section-swap">

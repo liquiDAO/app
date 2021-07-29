@@ -1,7 +1,14 @@
 import React from 'react';
+import { isMobileOnly } from 'react-device-detect';
+import Mobile from '../NoMobileSupport/Mobile';
 import './Reward.css';
 
 const Reward: React.FC = () => {
+  if (isMobileOnly) {
+    return (
+      <Mobile/>
+    );
+  }
   return (
     <div className="Reward">
       <div className="header-reward">

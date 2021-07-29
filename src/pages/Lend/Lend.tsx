@@ -1,7 +1,14 @@
 import React from 'react';
+import Mobile from '../NoMobileSupport/Mobile';
 import './Lend.css';
+import { isMobileOnly } from 'react-device-detect';
 
 const Lend: React.FC = () => {
+  if (isMobileOnly) {
+    return (
+      <Mobile/>
+    );
+  }
   return (
     <div className="Lend">
       <div className="wrapper">
