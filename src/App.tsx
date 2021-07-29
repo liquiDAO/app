@@ -13,22 +13,17 @@ import SelectToken from './components/SelectToken/SelectToken';
 import Stake from './components/Stake/Stake';
 import { Swap } from './pages/Swap/Swap';
 import { useChecks } from './utils';
+import data from './data.json';
 
 function App() {
+  const assests = Object.values(data);
+
   const [isInstalled, isConnected] = useChecks();
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
   const [isSelectError, setIsSelectError] = useState<string>('');
-  const [checkedCoinTop, setCheckedCoinTop] = useState({
-    title: 'L_BTC',
-    image: 'liquid-btc.svg',
-    hash: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
-  });
-  const [checkedCoinBottom, setCheckedCoinBottom] = useState({
-    title: 'L_USDT',
-    image: 'liquid-tether.svg',
-    hash: '9b3d7db7f93cae59e9407232b9864b54c21cba20b992d707fa45136fbfa9b8fa',
-  });
+  const [checkedCoinTop, setCheckedCoinTop] = useState(assests[0]);
+  const [checkedCoinBottom, setCheckedCoinBottom] = useState(assests[1]);
   const [checkSelect, setCheckSelect] = useState();
   const selectToken = (evt: any) => {
     setCheckSelect(evt);

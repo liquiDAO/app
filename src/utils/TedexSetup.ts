@@ -1,7 +1,7 @@
 import { TraderClient, TradeType } from 'tdex-sdk';
 import { toSatoshi, fromSatoshi } from './format';
 import BigNumber from 'bignumber.js';
-import { Market, Markets } from './constants';
+import { Markets } from './constants';
 
 interface KnownAsset {
   title: string;
@@ -58,8 +58,8 @@ export const previewAmount = async (
   }
 };
 
-export const marketDirection = (asset: KnownAsset) => {
-  if (Market.BaseAsset === asset.hash) {
+export const marketDirection = (asset: KnownAsset, market: PairMarket) => {
+  if (market.market.base_asset === asset.hash) {
     return true;
   }
   return false;

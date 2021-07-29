@@ -9,7 +9,6 @@ import {
   handleMarkets,
   MarketPair,
 } from '../../utils/TedexSetup';
-import { Market } from '../../utils/constants';
 import ErrorMessage from '../../components/ErrorMessage';
 
 interface SwapProp {
@@ -32,8 +31,8 @@ export const Swap: React.FC<SwapProp> = ({
   selectError,
 }) => {
   const [changeFlag, setChangeFlag] = useState<boolean>(false);
-  const [amountToBeSent, setAmountToBeSent] = useState<string>('0.0');
-  const [amountToReceive, setAmountToReceive] = useState<string>('0.0');
+  const [amountToBeSent, setAmountToBeSent] = useState<string>('');
+  const [amountToReceive, setAmountToReceive] = useState<string>('');
   const [isPreviewing, setIsPreviewing] = useState<boolean>(false);
   const [previewValueError, setPreviewValueError] = useState<Error | null>(
     null,
@@ -81,7 +80,7 @@ export const Swap: React.FC<SwapProp> = ({
 
       const amount = Number(value);
 
-      const direction = marketDirection(checkedCoin);
+      const direction = marketDirection(checkedCoin, providerMarket);
 
       try {
         const toRecieve = await previewAmount(
@@ -113,9 +112,9 @@ export const Swap: React.FC<SwapProp> = ({
     if (amountIsPositive(value) && selectError === '') {
       setIsPreviewing(true);
 
-      const amount = Number(value);
+      const amount = Number(value); // cast to bignumber
 
-      const direction = marketDirection(checkCoinBottom);
+      const direction = marketDirection(checkCoinBottom, providerMarket);
 
       try {
         const toRecieve = await previewAmount(

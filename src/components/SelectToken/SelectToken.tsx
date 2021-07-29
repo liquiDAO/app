@@ -10,12 +10,14 @@ interface CoinOptionType {
 }
 
 function SelectToken({ closeModal, selectCoin }: any) {
-  const [data, setData] = useState<CoinOptionType[]>(json);
-  const [commonData] = useState<CoinOptionType[]>(json);
+  const assets = Object.values(json);
+
+  const [data, setData] = useState<CoinOptionType[]>(assets);
+  const [commonData] = useState<CoinOptionType[]>(assets);
 
   const filterHandler = (event: any) => {
     if (event.length === 0) {
-      setData(json);
+      setData(assets);
     } else {
       let FilterCoinData = data.filter((item: CoinOptionType) => {
         return item.title.toLowerCase().includes(event.toLowerCase());
