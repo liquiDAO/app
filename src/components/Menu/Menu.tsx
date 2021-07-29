@@ -2,6 +2,7 @@ import React from 'react';
 import './Menu.css';
 import { link } from '../../utils';
 import { isMobileOnly } from 'react-device-detect';
+import { handleInstall } from '../../utils';
 
 interface MenuProps {
   openModalStake: any;
@@ -17,6 +18,13 @@ const Menu: React.FC<MenuProps> = ({
   if (isMobileOnly) {
     return <></>;
   }
+  const handleConnect = async () => {
+    if (!isInstalled) {
+      return alert('Marina is not installed');
+    }
+
+    await (window as any).marina.enable();
+  };
 
   return (
     <div className="Menu">
@@ -26,13 +34,17 @@ const Menu: React.FC<MenuProps> = ({
           <span className="slider round" />
         </label>
         <p onClick={openModalStake}>STAKE</p>
-        <button
-          id="btn1"
-          style={{ display: isConnected ? 'none' : 'block' }}
-          onClick={() => isInstalled === false && link}
-        >
-          {isInstalled ? 'Connect wallet' : 'Install Marina wallet'}
-        </button>
+
+        {isInstalled && isConnected ? null : (
+          <>
+            {' '}
+            {isInstalled === false ? (
+              <button onClick={handleInstall}>Install Marina wallet</button>
+            ) : (
+              <button onClick={handleConnect}>Connect wallet</button>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
