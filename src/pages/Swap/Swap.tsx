@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TradeType } from 'tdex-sdk';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
@@ -10,7 +10,8 @@ import {
   MarketPair,
 } from '../../utils/TedexSetup';
 import ErrorMessage from '../../components/ErrorMessage';
-import { MarketInterface, TraderClient } from 'tdex-sdk';
+import useTdexFetcher from '../../utils/tdexFetcherHooks';
+import { AmountPreview } from '../../utils/rates';
 
 interface SwapProp {
   selectToken: any;
@@ -38,28 +39,7 @@ export const Swap: React.FC<SwapProp> = ({
   const [previewValueError, setPreviewValueError] = useState<Error | null>(
     null,
   );
-
-  const client = new TraderClient('http://localhost:9945');
-
-  const [providerMarkets, setProviderMarkets] = useState<MarketInterface[]>();
-
-  useEffect(() => {
-    async function fetchMyAPI() {
-      let markets: MarketInterface[];
-
-  try {
-    markets = await client.markets();
-    console.log(markets);
-    setProviderMarkets(markets);
-    // return markets;
-  } catch (error) {
-    throw new Error('TDEX provider and markets is not reachable');
-  }
-    }
-    fetchMyAPI();
-   }, []);
-
-  const providerMarket = MarketPair(sendCoin.hash, receiveCoin.hash);
+  const tdexFetcher = useTdexFetcher();
 
   const handleConnect = async () => {
     if (!isInstalled) {
@@ -99,27 +79,41 @@ export const Swap: React.FC<SwapProp> = ({
     if (amountIsPositive(value) && selectError === '') {
       setIsPreviewing(true);
 
-      const amount = Number(value);
+      // const amount = Number(value);
 
-      const direction = marketDirection(sendCoin, providerMarket);
+      // const direction = marketDirection(sendCoin, providerMarket);
 
-      console.log(providerMarket);
+      // console.log(providerMarket);
 
-      console.log('this is all the markets returned', providerMarkets);
-      
+      console.log('Hey this is my new tdex fetcher', tdexFetcher);
       
 
       try {
-        const toRecieve = await previewAmount(
-          amount,
-          direction ? TradeType.SELL : TradeType.BUY,
-          sendCoin,
-          providerMarket,
-          receiveCoin.precision,
+        const amount = new BigNumber(value);
+        console.log('send amount', amount);
+        
+        // const toRecieve = await previewAmount(
+        //   amount,
+        //   direction ? TradeType.SELL : TradeType.BUY,
+        //   sendCoin,
+        //   providerMarket,
+        //   receiveCoin.precision,
+        // );
+        // setAmountToReceive(
+        //   convertAmountToString(toRecieve, sendCoin.precision),
+        // );
+        const receiveValue: AmountPreview = await tdexFetcher!.previewGivenSend(
+          {
+            amount,
+            currency: sendCoin.id,
+          },
+          [sendCoin.id, receiveCoin.id],
         );
-        setAmountToReceive(
-          convertAmountToString(toRecieve, sendCoin.precision),
+        console.log('This is new preview amount', receiveValue);
+         setAmountToReceive(
+          convertAmountToString(receiveValue.amountWithFees.amount, sendCoin.precision),
         );
+        
         setIsPreviewing(false);
       } catch (error) {
         setIsPreviewing(false);
@@ -139,20 +133,34 @@ export const Swap: React.FC<SwapProp> = ({
     if (amountIsPositive(value) && selectError === '') {
       setIsPreviewing(true);
 
-      const amount = Number(value); // cast to bignumber
+      // const amount = Number(value); // cast to bignumber
 
-      const direction = marketDirection(receiveCoin, providerMarket);
+      // const direction = marketDirection(receiveCoin, providerMarket);
 
       try {
-        const toRecieve = await previewAmount(
-          amount,
-          direction ? TradeType.BUY : TradeType.SELL,
-          receiveCoin,
-          providerMarket,
-          sendCoin.precision,
+        const amount = new BigNumber(value);
+        
+        // const toRecieve = await previewAmount(
+        //   amount,
+        //   direction ? TradeType.BUY : TradeType.SELL,
+        //   receiveCoin,
+        //   providerMarket,
+        //   sendCoin.precision,
+        // );
+        // setAmountToBeSent(
+        //   convertAmountToString(toRecieve, receiveCoin.precision),
+        // );
+        const sendValue: AmountPreview = await tdexFetcher!.previewGivenReceive(
+          {
+            amount,
+            currency: receiveCoin.id,
+          },
+          [sendCoin.id, receiveCoin.id],
         );
+        console.log('this is send value',sendValue);
+        
         setAmountToBeSent(
-          convertAmountToString(toRecieve, receiveCoin.precision),
+          convertAmountToString(sendValue.amountWithFees.amount, receiveCoin.precision),
         );
         setIsPreviewing(false);
       } catch (error) {
@@ -187,9 +195,9 @@ export const Swap: React.FC<SwapProp> = ({
               }}
             >
               <div className="selectedCoin">
-                <img src={`/images/${sendCoin.image}`} alt="" />
+                <img src={`/images/${sendCoin.label}`} alt="" />
               </div>
-              <span>{sendCoin && sendCoin.title}</span>
+              <span>{sendCoin && sendCoin.name}</span>
               <img
                 src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
                 alt=""
@@ -226,9 +234,9 @@ export const Swap: React.FC<SwapProp> = ({
           <div className="bottom">
             <div className="select" onClick={() => selectToken('bottom')}>
               <div className="selectedCoin">
-                <img src={`/images/${receiveCoin.image}`} alt="" />
+                <img src={`/images/${receiveCoin.label}`} alt="" />
               </div>
-              <span>{receiveCoin && receiveCoin.title}</span>
+              <span>{receiveCoin && receiveCoin.name}</span>
               <img
                 src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
                 alt=""

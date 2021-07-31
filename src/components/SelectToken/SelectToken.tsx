@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
 import './SelectToken.css';
 import json from '../../data.json';
+import { CurrencyOptions } from '../../utils/currency'
+
+// interface CoinOptionType {
+//   title: string;
+//   image?: string;
+//   hash: string;
+//   precision: number;
+// }
 
 interface CoinOptionType {
-  title: string;
-  image?: string;
-  hash: string;
-  precision: number;
+    id: string,
+    name: string,
+    symbol: string,
+    label: string,
+    swapValues: {
+      label: string,
+      type: string,
+    },
 }
 
 function SelectToken({ closeModal, selectCoin }: any) {
   const assets = Object.values(json);
 
-  const [data, setData] = useState<CoinOptionType[]>(assets);
-  const [commonData] = useState<CoinOptionType[]>(assets);
+  const [data, setData] = useState<CoinOptionType[]>(CurrencyOptions);
+  const [commonData] = useState<CoinOptionType[]>(CurrencyOptions);
 
   const filterHandler = (event: any) => {
     if (event.length === 0) {
-      setData(assets);
+      setData(CurrencyOptions);
     } else {
       let FilterCoinData = data.filter((item: CoinOptionType) => {
-        return item.title.toLowerCase().includes(event.toLowerCase());
+        return item.id.toLowerCase().includes(event.toLowerCase());
       });
       setData(FilterCoinData);
     }
@@ -59,8 +71,8 @@ function SelectToken({ closeModal, selectCoin }: any) {
           {commonData.map((chip: CoinOptionType, idx: number) => {
             return (
               <div key={idx} className="chip">
-                <img src={`/images/${chip.image}`} alt="" />
-                <span>{chip.title}</span>
+                <img src={`/images/${chip.label}`} alt="" />
+                <span>{chip.name}</span>
               </div>
             );
           })}
@@ -70,7 +82,7 @@ function SelectToken({ closeModal, selectCoin }: any) {
           {data.map((item: CoinOptionType, idx: number): JSX.Element => {
             return (
               <li key={idx} onClick={() => selectCoin(item)}>
-                <img src={`/images/${item.image}`} alt="" /> {item.title}
+                <img src={`/images/${item.label}`} alt="" /> {item.name}
               </li>
             );
           })}

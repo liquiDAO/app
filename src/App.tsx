@@ -14,6 +14,7 @@ import Stake from './components/Stake/Stake';
 import { Swap } from './pages/Swap/Swap';
 import { useChecks } from './utils';
 import data from './data.json';
+import { CurrencyOptions } from '../src/utils/currency';
 
 function App() {
   const assests = Object.values(data);
@@ -22,8 +23,8 @@ function App() {
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
   const [isSelectError, setIsSelectError] = useState<string>('');
-  const [checkedCoinTop, setCheckedCoinTop] = useState(assests[0]);
-  const [checkedCoinBottom, setCheckedCoinBottom] = useState(assests[1]);
+  const [checkedCoinTop, setCheckedCoinTop] = useState(CurrencyOptions[0]);
+  const [checkedCoinBottom, setCheckedCoinBottom] = useState(CurrencyOptions[1]);
   const [checkSelect, setCheckSelect] = useState();
   const selectToken = (evt: any) => {
     setCheckSelect(evt);
@@ -44,7 +45,7 @@ function App() {
 
     switch (checkSelect!) {
       case 'top': {
-        if (evt.title === checkedCoinBottom.title) {
+        if (evt.title === checkedCoinBottom.id) {
           setIsSelectError('Trading pair is not supported');
         } else {
           setIsSelectError('');
@@ -53,7 +54,7 @@ function App() {
         break;
       }
       case 'bottom': {
-        if (evt.title === checkedCoinTop.title) {
+        if (evt.title === checkedCoinTop.id) {
           setIsSelectError('Trading pair is not supported');
         } else {
           setIsSelectError('');
