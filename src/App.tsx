@@ -92,8 +92,8 @@ function App() {
               <Route exact path="/">
                 <Swap
                   selectToken={selectToken}
-                  checkedCoin={checkedCoinTop}
-                  checkCoinBottom={checkedCoinBottom}
+                  sendCoin={checkedCoinTop}
+                  receiveCoin={checkedCoinBottom}
                   isInstalled={isInstalled}
                   isConnected={isConnected}
                   changeToken={changeToken}

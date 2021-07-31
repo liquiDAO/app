@@ -30,6 +30,7 @@ export const handleMarkets = async () => {
   }
 };
 
+
 export const previewAmount = async (
   amount: number,
   trade: TradeType,
@@ -37,6 +38,8 @@ export const previewAmount = async (
   market: PairMarket,
   precision: number,
 ): Promise<BigNumber> => {
+  const mark = handleMarkets();
+  console.log(mark);
   try {
     const pricesPreview = await client.marketPrice(
       {
@@ -54,7 +57,9 @@ export const previewAmount = async (
 
     return new BigNumber(previewedAmount);
   } catch (error) {
+    console.log(error);
     throw new Error('Price fetching failed');
+    
   }
 };
 
@@ -68,13 +73,13 @@ export const marketDirection = (asset: KnownAsset, market: PairMarket) => {
 export const MarketPair = (
   baseCurrency: string,
   quoteCurrency: string,
+  // markets: [],
 ): PairMarket => {
   const found = Markets.markets.find(
     (el: any, i: any) =>
       el.market['quote_asset'] === quoteCurrency &&
       el.market['base_asset'] === baseCurrency,
   );
-  console.log(found);
 
   return found;
 };

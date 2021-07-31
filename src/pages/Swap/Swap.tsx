@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TradeType } from 'tdex-sdk';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
@@ -10,11 +10,12 @@ import {
   MarketPair,
 } from '../../utils/TedexSetup';
 import ErrorMessage from '../../components/ErrorMessage';
+import { MarketInterface, TraderClient } from 'tdex-sdk';
 
 interface SwapProp {
   selectToken: any;
-  checkedCoin: any;
-  checkCoinBottom: any;
+  sendCoin: any;
+  receiveCoin: any;
   isInstalled: boolean;
   isConnected: boolean;
   changeToken: any;
@@ -23,8 +24,8 @@ interface SwapProp {
 
 export const Swap: React.FC<SwapProp> = ({
   selectToken,
-  checkedCoin,
-  checkCoinBottom,
+  sendCoin,
+  receiveCoin,
   isInstalled,
   isConnected,
   changeToken,
@@ -38,7 +39,27 @@ export const Swap: React.FC<SwapProp> = ({
     null,
   );
 
-  const providerMarket = MarketPair(checkedCoin.hash, checkCoinBottom.hash);
+  const client = new TraderClient('http://localhost:9945');
+
+  const [providerMarkets, setProviderMarkets] = useState<MarketInterface[]>();
+
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let markets: MarketInterface[];
+
+  try {
+    markets = await client.markets();
+    console.log(markets);
+    setProviderMarkets(markets);
+    // return markets;
+  } catch (error) {
+    throw new Error('TDEX provider and markets is not reachable');
+  }
+    }
+    fetchMyAPI();
+   }, []);
+
+  const providerMarket = MarketPair(sendCoin.hash, receiveCoin.hash);
 
   const handleConnect = async () => {
     if (!isInstalled) {
@@ -80,18 +101,24 @@ export const Swap: React.FC<SwapProp> = ({
 
       const amount = Number(value);
 
-      const direction = marketDirection(checkedCoin, providerMarket);
+      const direction = marketDirection(sendCoin, providerMarket);
+
+      console.log(providerMarket);
+
+      console.log('this is all the markets returned', providerMarkets);
+      
+      
 
       try {
         const toRecieve = await previewAmount(
           amount,
           direction ? TradeType.SELL : TradeType.BUY,
-          checkedCoin,
+          sendCoin,
           providerMarket,
-          checkCoinBottom.precision,
+          receiveCoin.precision,
         );
         setAmountToReceive(
-          convertAmountToString(toRecieve, checkedCoin.precision),
+          convertAmountToString(toRecieve, sendCoin.precision),
         );
         setIsPreviewing(false);
       } catch (error) {
@@ -114,18 +141,18 @@ export const Swap: React.FC<SwapProp> = ({
 
       const amount = Number(value); // cast to bignumber
 
-      const direction = marketDirection(checkCoinBottom, providerMarket);
+      const direction = marketDirection(receiveCoin, providerMarket);
 
       try {
         const toRecieve = await previewAmount(
           amount,
           direction ? TradeType.BUY : TradeType.SELL,
-          checkCoinBottom,
+          receiveCoin,
           providerMarket,
-          checkedCoin.precision,
+          sendCoin.precision,
         );
         setAmountToBeSent(
-          convertAmountToString(toRecieve, checkCoinBottom.precision),
+          convertAmountToString(toRecieve, receiveCoin.precision),
         );
         setIsPreviewing(false);
       } catch (error) {
@@ -160,9 +187,9 @@ export const Swap: React.FC<SwapProp> = ({
               }}
             >
               <div className="selectedCoin">
-                <img src={`/images/${checkedCoin.image}`} alt="" />
+                <img src={`/images/${sendCoin.image}`} alt="" />
               </div>
-              <span>{checkedCoin && checkedCoin.title}</span>
+              <span>{sendCoin && sendCoin.title}</span>
               <img
                 src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
                 alt=""
@@ -199,9 +226,9 @@ export const Swap: React.FC<SwapProp> = ({
           <div className="bottom">
             <div className="select" onClick={() => selectToken('bottom')}>
               <div className="selectedCoin">
-                <img src={`/images/${checkCoinBottom.image}`} alt="" />
+                <img src={`/images/${receiveCoin.image}`} alt="" />
               </div>
-              <span>{checkCoinBottom && checkCoinBottom.title}</span>
+              <span>{receiveCoin && receiveCoin.title}</span>
               <img
                 src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
                 alt=""

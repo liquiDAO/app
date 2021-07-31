@@ -13,7 +13,7 @@ export const Markets: any = {
         base_asset:
           '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
         quote_asset:
-          '447e783838940c8b0bb1f19c78b3febd55ddec2d4d8fed989c7c731085d321bb',
+          'd78d329ea2f49820fdf0723ec62f43cb04e75e10d4cef75527e355f5e2e99986',
       },
     },
   ],
