@@ -53,7 +53,10 @@ export default class TdexFetcher implements RatesFetcher {
     amountWithCurrency: CurrencyAmount,
     pair: CurrencyPair,
   ): Promise<AmountPreview> {
-    if (!this.isPairSupported(pair)) throw new Error('pair is not supported');
+      if (!this.isPairSupported(pair)) throw new Error('pair is not supported');
+      
+      console.log(amountWithCurrency);
+      
 
     return this.previewForPair(amountWithCurrency, pair, false);
   }
@@ -87,16 +90,20 @@ export default class TdexFetcher implements RatesFetcher {
     let bestPrice;
     let bestProvider;
       for (const providerWithMarket of providersForPair) {
-        console.log(CurrencyToAssetByChain[this.network][amountWithCurrency.currency].hash);
         
       try {
-        const client = new TraderClient(providerWithMarket.provider.endpoint);
+          const client = new TraderClient(providerWithMarket.provider.endpoint);
+          
         const prices = await client.marketPrice(
           providerWithMarket.market,
           tradeType,
           amountInSatoshis,
-          CurrencyToAssetByChain[this.network][amountWithCurrency.currency].hash,
+            CurrencyToAssetByChain[this.network][amountWithCurrency.currency].hash,
+            // '81875b12e05675cd074181a1c58ee3ee3b17b73c74d77217294212c703d22173',
         );
+          
+          console.log(prices);
+          
 
         if (!prices || prices.length === 0) {
           throw new Error('price fetching failed');
@@ -137,7 +144,10 @@ export default class TdexFetcher implements RatesFetcher {
 
     const expectedCurrency = amountWithCurrency.currency === baseCurrency
       ? quoteCurrency
-      : baseCurrency;
+        : baseCurrency;
+      
+      console.log('besprice', bestPrice.amount);
+      
 
     return {
       amountWithFees: {

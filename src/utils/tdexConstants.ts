@@ -86,7 +86,7 @@ const RegtestAssetHashByCurrenyID: AssetByCurrency = {
     precision: 8,
   },
   [CurrencyID.LIQUID_USDT]: {
-    hash: process.env.REACT_APP_LIQUID_USDT_REGTEST!,
+    hash: "81875b12e05675cd074181a1c58ee3ee3b17b73c74d77217294212c703d22173",
     precision: 8,
   },
   [CurrencyID.LIQUID_CAD]: {

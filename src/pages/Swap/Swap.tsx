@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { TradeType } from 'tdex-sdk';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
 import { handleInstall } from '../../utils';
 import {
-  previewAmount,
-  marketDirection,
   handleMarkets,
-  MarketPair,
 } from '../../utils/TedexSetup';
 import ErrorMessage from '../../components/ErrorMessage';
 import useTdexFetcher from '../../utils/tdexFetcherHooks';
@@ -79,29 +75,12 @@ export const Swap: React.FC<SwapProp> = ({
     if (amountIsPositive(value) && selectError === '') {
       setIsPreviewing(true);
 
-      // const amount = Number(value);
-
-      // const direction = marketDirection(sendCoin, providerMarket);
-
-      // console.log(providerMarket);
-
       console.log('Hey this is my new tdex fetcher', tdexFetcher);
       
-
       try {
         const amount = new BigNumber(value);
         console.log('send amount', amount);
         
-        // const toRecieve = await previewAmount(
-        //   amount,
-        //   direction ? TradeType.SELL : TradeType.BUY,
-        //   sendCoin,
-        //   providerMarket,
-        //   receiveCoin.precision,
-        // );
-        // setAmountToReceive(
-        //   convertAmountToString(toRecieve, sendCoin.precision),
-        // );
         const receiveValue: AmountPreview = await tdexFetcher!.previewGivenSend(
           {
             amount,
@@ -133,23 +112,9 @@ export const Swap: React.FC<SwapProp> = ({
     if (amountIsPositive(value) && selectError === '') {
       setIsPreviewing(true);
 
-      // const amount = Number(value); // cast to bignumber
-
-      // const direction = marketDirection(receiveCoin, providerMarket);
-
       try {
         const amount = new BigNumber(value);
         
-        // const toRecieve = await previewAmount(
-        //   amount,
-        //   direction ? TradeType.BUY : TradeType.SELL,
-        //   receiveCoin,
-        //   providerMarket,
-        //   sendCoin.precision,
-        // );
-        // setAmountToBeSent(
-        //   convertAmountToString(toRecieve, receiveCoin.precision),
-        // );
         const sendValue: AmountPreview = await tdexFetcher!.previewGivenReceive(
           {
             amount,
@@ -157,10 +122,10 @@ export const Swap: React.FC<SwapProp> = ({
           },
           [sendCoin.id, receiveCoin.id],
         );
-        console.log('this is send value',sendValue);
+        console.log('this is send value', sendValue.amountWithFees.amount);
         
         setAmountToBeSent(
-          convertAmountToString(sendValue.amountWithFees.amount, receiveCoin.precision),
+          convertAmountToString(sendValue.amountWithFees.amount, receiveCoin.precision), // for testing pass in 12 for precision
         );
         setIsPreviewing(false);
       } catch (error) {
