@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import './SelectToken.css';
-import json from '../../data.json';
 import { CurrencyOptions } from '../../utils/currency'
-
-// interface CoinOptionType {
-//   title: string;
-//   image?: string;
-//   hash: string;
-//   precision: number;
-// }
 
 interface CoinOptionType {
     id: string,
@@ -22,8 +14,6 @@ interface CoinOptionType {
 }
 
 function SelectToken({ closeModal, selectCoin }: any) {
-  const assets = Object.values(json);
-
   const [data, setData] = useState<CoinOptionType[]>(CurrencyOptions);
   const [commonData] = useState<CoinOptionType[]>(CurrencyOptions);
 

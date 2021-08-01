@@ -13,12 +13,9 @@ import SelectToken from './components/SelectToken/SelectToken';
 import Stake from './components/Stake/Stake';
 import { Swap } from './pages/Swap/Swap';
 import { useChecks } from './utils';
-import data from './data.json';
 import { CurrencyOptions } from '../src/utils/currency';
 
 function App() {
-  const assests = Object.values(data);
-
   const [isInstalled, isConnected] = useChecks();
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);

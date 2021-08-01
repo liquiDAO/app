@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
 import { handleInstall } from '../../utils';
-import {
-  handleMarkets,
-} from '../../utils/TedexSetup';
 import ErrorMessage from '../../components/ErrorMessage';
 import useTdexFetcher from '../../utils/tdexFetcherHooks';
 import { AmountPreview } from '../../utils/rates';
@@ -53,7 +50,6 @@ export const Swap: React.FC<SwapProp> = ({
     if (!isConnected) {
       return alert('User must enable this website to proceed');
     }
-    handleMarkets();
   };
 
   const amountIsPositive = (x: any): boolean => {
