@@ -1,14 +1,31 @@
 import React from 'react';
 import './Pools.css';
+import img from '../../../public/images/illustration2.svg';
+import Mobile from '../NoMobileSupport/Mobile';
 
-const Pools: React.FC = () => {
+interface PoolProps {
+  isMobile: boolean;
+}
+
+const Pools: React.FC<PoolProps> = ({ isMobile }) => {
+  if (isMobile) {
+    return <Mobile />;
+  }
   return (
     <div className="Pools">
       <div className="section-pools">
         <div className="header-pools">
-          <h2>All pools</h2>
+          {/* <h2>All pools</h2> */}
+          <h1 style={{ margin: '0px auto', textAlign: 'center' }}>
+            Coming Soon
+          </h1>
         </div>
-        <table>
+        <img
+          src="/images/illustration2.svg"
+          style={{ width: '100%' }}
+          alt="Coming Soon"
+        />
+        {/* <table>
           <thead>
             <tr>
               <th>#</th>
@@ -62,11 +79,11 @@ const Pools: React.FC = () => {
               <td></td>
             </tr>
           </tbody>
-        </table>
-        <div className="pagination"></div>
+        </table> */}
+        {/* <div className="pagination"></div>
         <div className="btn-block">
           <button className="btn-add">Add Liquidity</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

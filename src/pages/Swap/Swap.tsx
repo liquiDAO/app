@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BigNumber from 'bignumber.js';
 import './Swap.css';
+import Mobile from '../NoMobileSupport/Mobile';
 import { handleInstall } from '../../utils';
 import ErrorMessage from '../../components/ErrorMessage';
 import useTdexFetcher from '../../utils/tdexFetcherHooks';
@@ -14,6 +15,7 @@ interface SwapProp {
   isConnected: boolean;
   changeToken: any;
   selectError: string | null;
+  isMobile: boolean;
 }
 
 export const Swap: React.FC<SwapProp> = ({
@@ -24,6 +26,7 @@ export const Swap: React.FC<SwapProp> = ({
   isConnected,
   changeToken,
   selectError,
+  isMobile,
 }) => {
   const [changeFlag, setChangeFlag] = useState<boolean>(false);
   const [amountToBeSent, setAmountToBeSent] = useState<string>('');
@@ -34,6 +37,9 @@ export const Swap: React.FC<SwapProp> = ({
   );
   const tdexFetcher = useTdexFetcher();
 
+  if (isMobile) {
+    return <Mobile />;
+  }
   const handleConnect = async () => {
     if (!isInstalled) {
       return alert('Marina is not installed');
