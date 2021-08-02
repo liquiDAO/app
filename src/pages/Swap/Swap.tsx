@@ -86,7 +86,7 @@ export const Swap: React.FC<SwapProp> = ({
       console.log('Hey this is my new tdex fetcher', tdexFetcher);
 
       try {
-        setPreviewValueError(null)
+        setPreviewValueError(null);
 
         const amount = new BigNumber(value);
         console.log('send amount', amount);
@@ -126,8 +126,8 @@ export const Swap: React.FC<SwapProp> = ({
       setIsPreviewing(true);
 
       try {
-        setPreviewValueError(null)
-        
+        setPreviewValueError(null);
+
         const amount = new BigNumber(value);
 
         const sendValue: AmountPreview = await tdexFetcher!.previewGivenReceive(
@@ -163,105 +163,109 @@ export const Swap: React.FC<SwapProp> = ({
 
   return (
     <div className="Swap">
-      {tdexError ? <ErrorMessage message={tdexError} /> : <div className="section-swap">
-        <div className="header">
-          <h2>SWAP</h2>
-          <img src="/images/iconfinder_icons_settings_1564529 1.png" alt="" />
-        </div>
-
-        <div className="change">
-          <div className="top">
-            <div
-              className="select"
-              onClick={() => {
-                selectToken('top');
-              }}
-            >
-              <div className="selectedCoin">
-                <img src={`/images/${sendCoin.label}`} alt="" />
-              </div>
-              <span>{sendCoin && sendCoin.name}</span>
-              <img
-                src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
-                alt=""
-              />
-            </div>
-            <div className="count">
-              <input
-                type="text"
-                placeholder="0.0"
-                value={amountToBeSent}
-                onChange={(evt) => {
-                  handleSendAmountChange(evt);
-                }}
-              />
-            </div>
-            <div
-              className="convert"
-              onClick={(evt) => {
-                let flag = !changeFlag;
-                setChangeFlag(flag);
-                changeToken(evt);
-                setAmountToBeSent(amountToReceive);
-                setAmountToReceive(amountToBeSent);
-              }}
-            >
-              {changeFlag ? (
-                <img src="/images/arow.png" alt="" className="top-arow" />
-              ) : (
-                <img src="/images/Vector.png" alt="" />
-              )}
-            </div>
+      {tdexError ? (
+        <ErrorMessage message={tdexError} />
+      ) : (
+        <div className="section-swap">
+          <div className="header">
+            <h2>SWAP</h2>
+            <img src="/images/iconfinder_icons_settings_1564529 1.png" alt="" />
           </div>
 
-          <div className="bottom">
-            <div className="select" onClick={() => selectToken('bottom')}>
-              <div className="selectedCoin">
-                <img src={`/images/${receiveCoin.label}`} alt="" />
-              </div>
-              <span>{receiveCoin && receiveCoin.name}</span>
-              <img
-                src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
-                alt=""
-              />
-            </div>
-            <div className="count">
-              <input
-                type="text"
-                placeholder="0.0"
-                value={amountToReceive}
-                onChange={(evt) => {
-                  handleReceiveAmountChange(evt);
+          <div className="change">
+            <div className="top">
+              <div
+                className="select"
+                onClick={() => {
+                  selectToken('top');
                 }}
-              />
+              >
+                <div className="selectedCoin">
+                  <img src={`/images/${sendCoin.label}`} alt="" />
+                </div>
+                <span>{sendCoin && sendCoin.name}</span>
+                <img
+                  src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
+                  alt=""
+                />
+              </div>
+              <div className="count">
+                <input
+                  type="text"
+                  placeholder="0.0"
+                  value={amountToBeSent}
+                  onChange={(evt) => {
+                    handleSendAmountChange(evt);
+                  }}
+                />
+              </div>
+              <div
+                className="convert"
+                onClick={(evt) => {
+                  let flag = !changeFlag;
+                  setChangeFlag(flag);
+                  changeToken(evt);
+                  setAmountToBeSent(amountToReceive);
+                  setAmountToReceive(amountToBeSent);
+                }}
+              >
+                {changeFlag ? (
+                  <img src="/images/arow.png" alt="" className="top-arow" />
+                ) : (
+                  <img src="/images/Vector.png" alt="" />
+                )}
+              </div>
             </div>
+
+            <div className="bottom">
+              <div className="select" onClick={() => selectToken('bottom')}>
+                <div className="selectedCoin">
+                  <img src={`/images/${receiveCoin.label}`} alt="" />
+                </div>
+                <span>{receiveCoin && receiveCoin.name}</span>
+                <img
+                  src="/images/iconfinder_icon-arrow-down-b_211614 (1) 1.png"
+                  alt=""
+                />
+              </div>
+              <div className="count">
+                <input
+                  type="text"
+                  placeholder="0.0"
+                  value={amountToReceive}
+                  onChange={(evt) => {
+                    handleReceiveAmountChange(evt);
+                  }}
+                />
+              </div>
+            </div>
+            {selectError ? <ErrorMessage message={selectError} /> : <></>}
+            {previewValueError ? (
+              <ErrorMessage message={previewValueError.message} />
+            ) : (
+              <></>
+            )}
+            {isInstalled && isConnected ? (
+              <button onClick={handleSwap} className="connect-wallet">
+                Swap
+              </button>
+            ) : (
+              <>
+                {' '}
+                {isInstalled ? (
+                  <button onClick={handleConnect} className="connect-wallet">
+                    Connect wallet
+                  </button>
+                ) : (
+                  <button onClick={handleInstall} className="connect-wallet">
+                    Install Marina wallet
+                  </button>
+                )}
+              </>
+            )}
           </div>
-          {selectError ? <ErrorMessage message={selectError} /> : <></>}
-          {previewValueError ? (
-            <ErrorMessage message={previewValueError.message} />
-          ) : (
-            <></>
-          )}
-          {isInstalled && isConnected ? (
-            <button onClick={handleSwap} className="connect-wallet">
-              Swap
-            </button>
-          ) : (
-            <>
-              {' '}
-              {isInstalled ? (
-                <button onClick={handleConnect} className="connect-wallet">
-                  Connect wallet
-                </button>
-              ) : (
-                <button onClick={handleInstall} className="connect-wallet">
-                  Install Marina wallet
-                </button>
-              )}
-            </>
-          )}
         </div>
-      </div>}
+      )}
     </div>
   );
 };
