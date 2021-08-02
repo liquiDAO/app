@@ -35,11 +35,17 @@ export const Swap: React.FC<SwapProp> = ({
   const [previewValueError, setPreviewValueError] = useState<Error | null>(
     null,
   );
+  const [tdexError, setTdexError] = useState<string | null>();
   const tdexFetcher = useTdexFetcher();
 
   if (isMobile) {
     return <Mobile />;
   }
+
+  if (tdexFetcher === undefined) {
+    setTdexError('TDEX providers are not reachable. Try again later');
+  }
+
   const handleConnect = async () => {
     if (!isInstalled) {
       return alert('Marina is not installed');
@@ -80,6 +86,8 @@ export const Swap: React.FC<SwapProp> = ({
       console.log('Hey this is my new tdex fetcher', tdexFetcher);
 
       try {
+        setPreviewValueError(null)
+
         const amount = new BigNumber(value);
         console.log('send amount', amount);
 
@@ -118,6 +126,8 @@ export const Swap: React.FC<SwapProp> = ({
       setIsPreviewing(true);
 
       try {
+        setPreviewValueError(null)
+        
         const amount = new BigNumber(value);
 
         const sendValue: AmountPreview = await tdexFetcher!.previewGivenReceive(
@@ -153,7 +163,7 @@ export const Swap: React.FC<SwapProp> = ({
 
   return (
     <div className="Swap">
-      <div className="section-swap">
+      {tdexError ? <ErrorMessage message={tdexError} /> : <div className="section-swap">
         <div className="header">
           <h2>SWAP</h2>
           <img src="/images/iconfinder_icons_settings_1564529 1.png" alt="" />
@@ -251,7 +261,7 @@ export const Swap: React.FC<SwapProp> = ({
             </>
           )}
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

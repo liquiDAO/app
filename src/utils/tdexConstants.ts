@@ -89,7 +89,7 @@ const RegtestAssetHashByCurrenyID: AssetByCurrency = {
     precision: 8,
   },
   [CurrencyID.LIQUID_USDT]: {
-    hash: LIQUID_USDT, // for testing due to regtest quoteasset hash changes
+    hash: process.env.REACT_APP_LIQUID_USDT_REGTEST!, // for testing due to regtest quoteasset hash changes
     precision: 8,
   },
   [CurrencyID.LIQUID_CAD]: {
@@ -107,7 +107,6 @@ const LiquidCurrencyIDByAssetHash: CurrencyByAsset = {
 const RegtestCurrencyIDByAssetHash: CurrencyByAsset = {
   [LIQUID_BTC_REGTEST]: CurrencyID.LIQUID_BTC,
   [process.env.REACT_APP_LIQUID_USDT_REGTEST!]: CurrencyID.LIQUID_USDT,
-  //[LIQUID_USDT]: CurrencyID.LIQUID_USDT, // for testing due to regtest quoteasset hash changes
   [process.env.REACT_APP_LIQUID_CAD_REGTEST!]: CurrencyID.LIQUID_CAD,
 };
 
