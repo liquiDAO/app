@@ -101,6 +101,7 @@ export default class TdexFetcher implements RatesFetcher {
 
     let bestPrice;
     let bestProvider;
+    let errors: any[] = [];
     for (const providerWithMarket of providersForPair) {
       try {
         const client = new TraderClient(providerWithMarket.provider.endpoint);
@@ -142,13 +143,15 @@ export default class TdexFetcher implements RatesFetcher {
           }
         }
       } catch (e) {
-        console.error(e);
+        errors.push(e);
         console.warn(
-          `TDEX provider ${providerWithMarket.provider.name} is not reachable`,
+          `TDEX provider ${providerWithMarket.provider.name} got an error ${e.message}`,
         );
         continue;
       }
     }
+
+    if (errors.length === providersForPair.length) throw errors[0];
 
     const event = new CustomEvent('bestProvider', { detail: bestProvider });
     window.dispatchEvent(event);
