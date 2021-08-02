@@ -21,7 +21,9 @@ function App() {
   const [stakeModal, setStakeModal] = useState(false);
   const [isSelectError, setIsSelectError] = useState<string>('');
   const [checkedCoinTop, setCheckedCoinTop] = useState(CurrencyOptions[0]);
-  const [checkedCoinBottom, setCheckedCoinBottom] = useState(CurrencyOptions[1]);
+  const [checkedCoinBottom, setCheckedCoinBottom] = useState(
+    CurrencyOptions[1],
+  );
   const [checkSelect, setCheckSelect] = useState();
   const selectToken = (evt: any) => {
     setCheckSelect(evt);

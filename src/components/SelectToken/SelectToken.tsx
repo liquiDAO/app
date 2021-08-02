@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './SelectToken.css';
-import { CurrencyOptions } from '../../utils/currency'
+import { CurrencyOptions } from '../../utils/currency';
 
 interface CoinOptionType {
-    id: string,
-    name: string,
-    symbol: string,
-    label: string,
-    swapValues: {
-      label: string,
-      type: string,
-    },
+  id: string;
+  name: string;
+  symbol: string;
+  label: string;
+  swapValues: {
+    label: string;
+    type: string;
+  };
 }
 
 function SelectToken({ closeModal, selectCoin }: any) {

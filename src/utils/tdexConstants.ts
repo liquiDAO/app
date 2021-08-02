@@ -45,11 +45,15 @@ type CurrencyByAsset = Record<
   CurrencyID.LIQUID_BTC | CurrencyID.LIQUID_USDT | CurrencyID.LIQUID_CAD
 >;
 
-const LIQUID_BTC_REGTEST = '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225';
-const LIQUID_BTC = '6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d';
+const LIQUID_BTC_REGTEST =
+  '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225';
+const LIQUID_BTC =
+  '6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d';
 // const LIQUID_USDT = 'ce091c998b83c78bb71a632313ba3760f1763d9cfcffae02258ffa9865a37bd2';
-const LIQUID_USDT = '155ba13ffbfc2dc3d6b3d1f289ccf180f2c5dc75c473efc41902f311ad42a9ac'; // for testing due to regtest quoteasset hash changes
-const LIQUID_CAD = '0e99c1a6da379d1f4151fb9df90449d40d0608f6cb33a5bcbfc8c265f42bab0a';
+const LIQUID_USDT =
+  '155ba13ffbfc2dc3d6b3d1f289ccf180f2c5dc75c473efc41902f311ad42a9ac'; // for testing due to regtest quoteasset hash changes
+const LIQUID_CAD =
+  '0e99c1a6da379d1f4151fb9df90449d40d0608f6cb33a5bcbfc8c265f42bab0a';
 
 export type CurrencyPairKey = string;
 
@@ -103,7 +107,7 @@ const LiquidCurrencyIDByAssetHash: CurrencyByAsset = {
 
 const RegtestCurrencyIDByAssetHash: CurrencyByAsset = {
   [LIQUID_BTC_REGTEST]: CurrencyID.LIQUID_BTC,
-//   [process.env.REACT_APP_LIQUID_USDT_REGTEST!]: CurrencyID.LIQUID_USDT,
+  //   [process.env.REACT_APP_LIQUID_USDT_REGTEST!]: CurrencyID.LIQUID_USDT,
   [LIQUID_USDT]: CurrencyID.LIQUID_USDT, // for testing due to regtest quoteasset hash changes
   [process.env.REACT_APP_LIQUID_CAD_REGTEST!]: CurrencyID.LIQUID_CAD,
 };

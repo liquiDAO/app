@@ -72,11 +72,11 @@ export const Swap: React.FC<SwapProp> = ({
       setIsPreviewing(true);
 
       console.log('Hey this is my new tdex fetcher', tdexFetcher);
-      
+
       try {
         const amount = new BigNumber(value);
         console.log('send amount', amount);
-        
+
         const receiveValue: AmountPreview = await tdexFetcher!.previewGivenSend(
           {
             amount,
@@ -85,10 +85,13 @@ export const Swap: React.FC<SwapProp> = ({
           [sendCoin.id, receiveCoin.id],
         );
         console.log('This is new preview amount', receiveValue);
-         setAmountToReceive(
-          convertAmountToString(receiveValue.amountWithFees.amount, sendCoin.precision),
+        setAmountToReceive(
+          convertAmountToString(
+            receiveValue.amountWithFees.amount,
+            sendCoin.precision,
+          ),
         );
-        
+
         setIsPreviewing(false);
       } catch (error) {
         setIsPreviewing(false);
@@ -110,7 +113,7 @@ export const Swap: React.FC<SwapProp> = ({
 
       try {
         const amount = new BigNumber(value);
-        
+
         const sendValue: AmountPreview = await tdexFetcher!.previewGivenReceive(
           {
             amount,
@@ -119,9 +122,12 @@ export const Swap: React.FC<SwapProp> = ({
           [sendCoin.id, receiveCoin.id],
         );
         console.log('this is send value', sendValue.amountWithFees.amount);
-        
+
         setAmountToBeSent(
-          convertAmountToString(sendValue.amountWithFees.amount, receiveCoin.precision), // for testing pass in 12 for precision
+          convertAmountToString(
+            sendValue.amountWithFees.amount,
+            receiveCoin.precision,
+          ), // for testing pass in 12 for precision
         );
         setIsPreviewing(false);
       } catch (error) {
