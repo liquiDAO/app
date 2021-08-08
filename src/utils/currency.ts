@@ -44,7 +44,7 @@ export interface CurrencyOption extends CurrencyInterface {
 export enum CurrencyName {
   BTC = 'Bitcoin',
   USDT = 'Tether USD',
-  CAD = 'CAD',
+  CAD = 'LCAD',
 }
 
 // old: kept for backward compatibility only to maintain swapValues
