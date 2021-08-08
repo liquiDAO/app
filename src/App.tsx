@@ -13,18 +13,17 @@ import SelectToken from './components/SelectToken/SelectToken';
 import Stake from './components/Stake/Stake';
 import { Swap } from './pages/Swap/Swap';
 import { useChecks } from './utils';
+import { CurrencyOptions } from '../src/utils/currency';
+
 function App() {
   const [isInstalled, isConnected] = useChecks();
   const [selectTokenDrop, setSelectTokenDrop] = useState(false);
   const [stakeModal, setStakeModal] = useState(false);
-  const [checkedCoinTop, setCheckedCoinTop] = useState({
-    title: 'L-BTC',
-    image: 'liquid-btc.svg',
-  });
-  const [checkedCoinBottom, setCheckedCoinBottom] = useState({
-    title: 'L-BTC',
-    image: 'liquid-btc.svg',
-  });
+  const [isSelectError, setIsSelectError] = useState<string>('');
+  const [checkedCoinTop, setCheckedCoinTop] = useState(CurrencyOptions[0]);
+  const [checkedCoinBottom, setCheckedCoinBottom] = useState(
+    CurrencyOptions[1],
+  );
   const [checkSelect, setCheckSelect] = useState();
   const [width, setWidth] = useState<number>(window.innerWidth);
   function handleWindowSizeChange() {
@@ -54,12 +53,38 @@ function App() {
   };
   const selectCoin = (evt: any) => {
     setSelectTokenDrop(false);
-    if (checkSelect === 'top') {
-      setCheckedCoinTop(evt);
-    } else {
-      setCheckedCoinBottom(evt);
+    console.log(evt);
+
+    switch (checkSelect!) {
+      case 'top': {
+        if (evt.title === checkedCoinBottom.id) {
+          setIsSelectError('Trading pair is not supported');
+        } else {
+          setIsSelectError('');
+          setCheckedCoinTop(evt);
+        }
+        break;
+      }
+      case 'bottom': {
+        if (evt.title === checkedCoinTop.id) {
+          setIsSelectError('Trading pair is not supported');
+        } else {
+          setIsSelectError('');
+          setCheckedCoinBottom(evt);
+        }
+        break;
+      }
+      default:
+        break;
     }
   };
+
+  const changeToken = (evt: any) => {
+    evt.stopPropagation();
+    setCheckedCoinTop(checkedCoinBottom);
+    setCheckedCoinBottom(checkedCoinTop);
+  };
+
   return (
     <div
       className="App"
@@ -81,10 +106,12 @@ function App() {
               <Route exact path="/">
                 <Swap
                   selectToken={selectToken}
-                  checkedCoin={checkedCoinTop}
-                  checkCoinBottom={checkedCoinBottom}
+                  sendCoin={checkedCoinTop}
+                  receiveCoin={checkedCoinBottom}
                   isInstalled={isInstalled}
                   isConnected={isConnected}
+                  changeToken={changeToken}
+                  selectError={isSelectError}
                   isMobile={isMobile}
                 />
               </Route>
