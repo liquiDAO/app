@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isMobile }) => {
           <li>LEND</li>
         </NavLink>
         <NavLink activeClassName="isActive" className="link" to="/dervatives">
-          <li>DERVATIVES</li>
+          <li>DERIVATIVES</li>
         </NavLink>
       </ul>
     </div>

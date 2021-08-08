@@ -29,10 +29,10 @@ const Menu: React.FC<MenuProps> = ({
   return (
     <div className="Menu">
       <div className="actions">
-        <label className="switch">
+        {/* <label className="switch">
           <input type="checkbox" />
           <span className="slider round" />
-        </label>
+        </label> */}
         <p onClick={openModalStake}>STAKE</p>
 
         {isInstalled && isConnected ? null : (

@@ -46,7 +46,6 @@ export const Swap: React.FC<SwapProp> = ({
       <div className="section-swap">
         <div className="header">
           <h2>SWAP</h2>
-          <img src="/images/iconfinder_icons_settings_1564529 1.png" alt="" />
         </div>
 
         <div className="change">
